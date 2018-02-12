@@ -1,0 +1,10 @@
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\PropertyManagementTool.DataAccess.dll.config
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\PropertyManagementTool.DataAccess.dll
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\PropertyManagementTool.DataAccess.pdb
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.dll
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.xml
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.csprojResolveAssemblyReference.cache
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.dll
+D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.pdb

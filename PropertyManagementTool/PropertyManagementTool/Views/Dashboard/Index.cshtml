@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Properties</h2>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Tenant</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>50 Antilla Ave apt 7, Miami FL 33135</td>
+                    <td>Leased</td>
+                    <td>Fulano de Tal</td>
+                    <td>@Html.ActionLink("Details", "Details", "Properties")</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a class="btn btn-default" href='@Url.Action("Index", "Properties")'>View more &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Leases</h2>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Tenant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>50 Antilla Ave apt 7, Miami FL 33135</td>
+                    <td>Leased</td>
+                    <td><a href='@Url.Action("Details", "Tentants")'>Fulano de Tal</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a class="btn btn-default" href='@Url.Action("Index", "Tenants")'>View more &raquo;</a></p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>My Bills</h2>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Home Owner Association Monthly Fee</td>
+                    <td>$200.00</td>
+                    <td>03/10/2018</td>
+                    <td>Pending</td>
+                    <td>@Html.ActionLink("Payment", "Create", "Transactions")</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a class="btn btn-default" href='@Url.Action("Index", "Bills")'>View more &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Tenant's Bills</h2>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Property</th>
+                    <th>Amount</th>
+                    <th>Due Date</th>
+                    <th>Status</th>
+                    <th>Tenant</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Montly Rent</td>
+                    <td>50 Antilla</td>
+                    <td>$200.00</td>
+                    <td>03/10/2018</td>
+                    <td>Pending</td>
+                    <td>Fulano de Tal</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a class="btn btn-default" href='@Url.Action("Index", "Bills")'>View more &raquo;</a></p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Recent Transactions</h2>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date Created</th>
+                    <th>Paid by</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>50 Antilla - Monthly Rent</td>
+                    <td>$1700.00</td>
+                    <td>02/03/1983</td>
+                    <td>Tenant</td>
+                </tr>
+                <tr>
+                    <td>50 Antilla - Home Owners Association</td>
+                    <td>$200.00</td>
+                    <td>02/10/1983</td>
+                    <td>Owner</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a class="btn btn-default" href='@Url.Action("Create", "Transactions")'>Add &raquo;</a>&nbsp;<a class="btn btn-default" href='@Url.Action("Index", "Transactions")'>View more &raquo;</a></p>
+    </div>
+    <div class="col-md-6">
+        <h2>Maintenance Requests</h2>
+        <hr />
+        <table>
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Requested by</th>
+                    <th>Status</th>
+                    <th>Date Created</th>
+                    <th>Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>50 Antilla</td>
+                    <td>Replace Dishwasher</td>
+                    <td>Tenant</td>
+                    <td>Pending</td>
+                    <td>02/03/2018</td>
+                    <td>02/03/2018</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><a class="btn btn-default" href='@Url.Action("Index", "MaintenanceRequests")'>View more &raquo;</a></p>
+    </div>
+</div>
