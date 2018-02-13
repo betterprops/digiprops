@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PropertyManagementDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureId" />
+    </Key>
+    <Property Name="FeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Size" Type="float" />
+    <Property Name="Bedrooms" Type="float" />
+    <Property Name="Bathrooms" Type="float" />
+    <Property Name="Description" Type="varchar" MaxLength="250" />
+    <Property Name="PropertyStatusId" Type="int" />
+    <Property Name="ParentPropertyId" Type="int" />
+  </EntityType>
+  <EntityType Name="PropertyFeature">
+    <Key>
+      <PropertyRef Name="PropertyId" />
+      <PropertyRef Name="FeatureId" />
+    </Key>
+    <Property Name="PropertyId" Type="int" Nullable="false" />
+    <Property Name="FeatureId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PropertyStatus">
+    <Key>
+      <PropertyRef Name="PropertyStatusId" />
+    </Key>
+    <Property Name="PropertyStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Property_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+    <End Role="Property1" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property1">
+        <PropertyRef Name="ParentPropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Property_PropertyStatus">
+    <End Role="PropertyStatus" Type="Self.PropertyStatus" Multiplicity="0..1" />
+    <End Role="Property" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyStatus">
+        <PropertyRef Name="PropertyStatusId" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="PropertyStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyFeature_Feature">
+    <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+    <End Role="PropertyFeature" Type="Self.PropertyFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="FeatureId" />
+      </Principal>
+      <Dependent Role="PropertyFeature">
+        <PropertyRef Name="FeatureId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyFeature_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="1" />
+    <End Role="PropertyFeature" Type="Self.PropertyFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PropertyFeature">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PropertyManagementDbModelStoreContainer">
+    <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyFeature" EntityType="Self.PropertyFeature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PropertyStatus" EntityType="Self.PropertyStatus" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Property_Property" Association="Self.FK_Property_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="Property1" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Property_PropertyStatus" Association="Self.FK_Property_PropertyStatus">
+      <End Role="PropertyStatus" EntitySet="PropertyStatus" />
+      <End Role="Property" EntitySet="Property" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyFeature_Feature" Association="Self.FK_PropertyFeature_Feature">
+      <End Role="Feature" EntitySet="Feature" />
+      <End Role="PropertyFeature" EntitySet="PropertyFeature" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyFeature_Property" Association="Self.FK_PropertyFeature_Property">
+      <End Role="Property" EntitySet="Property" />
+      <End Role="PropertyFeature" EntitySet="PropertyFeature" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

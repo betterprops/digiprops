@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PropertyManagementDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Property">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Size" Type="Double" />
+    <Property Name="Bedrooms" Type="Double" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PropertyStatusId" Type="Int32" />
+    <Property Name="ParentPropertyId" Type="Int32" />
+    <NavigationProperty Name="ParentProperty" Relationship="Self.FK_Property_Property" FromRole="Property" ToRole="Property1" />
+    <NavigationProperty Name="Features" Relationship="PropertyManagementDbModel.PropertyFeature1" FromRole="Property" ToRole="Feature" />
+    <NavigationProperty Name="PropertyStatus" Relationship="PropertyManagementDbModel.FK_Property_PropertyStatus" FromRole="Property" ToRole="PropertyStatu" />
+    <Property Name="Bathrooms" Type="Double" />
+  </EntityType>
+  <Association Name="FK_Property_Property">
+    <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+    <End Role="Property1" Type="Self.Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property1">
+        <PropertyRef Name="ParentPropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PropertyManagementDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Properties" EntityType="Self.Property" />
+    <AssociationSet Name="FK_Property_Property" Association="Self.FK_Property_Property">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="Property1" EntitySet="Properties" />
+    </AssociationSet>
+    <EntitySet Name="Features" EntityType="PropertyManagementDbModel.Feature" />
+    <AssociationSet Name="PropertyFeature1" Association="PropertyManagementDbModel.PropertyFeature1">
+      <End Role="Feature" EntitySet="Features" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <EntitySet Name="PropertyStatus" EntityType="PropertyManagementDbModel.PropertyStatu" />
+    <AssociationSet Name="FK_Property_PropertyStatus" Association="PropertyManagementDbModel.FK_Property_PropertyStatus">
+      <End Role="PropertyStatu" EntitySet="PropertyStatus" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="FeatureId" />
+    </Key>
+    <Property Name="FeatureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Properties" Relationship="PropertyManagementDbModel.PropertyFeature1" FromRole="Feature" ToRole="Property" />
+  </EntityType>
+  <Association Name="PropertyFeature1">
+    <End Type="PropertyManagementDbModel.Feature" Role="Feature" Multiplicity="*" />
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="*" />
+  </Association>
+  <EntityType Name="PropertyStatu">
+    <Key>
+      <PropertyRef Name="PropertyStatusId" />
+    </Key>
+    <Property Name="PropertyStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Properties" Relationship="PropertyManagementDbModel.FK_Property_PropertyStatus" FromRole="PropertyStatu" ToRole="Property" />
+  </EntityType>
+  <Association Name="FK_Property_PropertyStatus">
+    <End Type="PropertyManagementDbModel.PropertyStatu" Role="PropertyStatu" Multiplicity="0..1" />
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PropertyStatu">
+        <PropertyRef Name="PropertyStatusId" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="PropertyStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

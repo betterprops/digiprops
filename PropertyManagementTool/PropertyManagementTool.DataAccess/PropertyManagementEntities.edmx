@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PropertyManagementDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="FeatureId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Size" Type="float" />
+          <Property Name="Bedrooms" Type="float" />
+          <Property Name="Bathrooms" Type="float" />
+          <Property Name="Description" Type="varchar" MaxLength="250" />
+          <Property Name="PropertyStatusId" Type="int" />
+          <Property Name="ParentPropertyId" Type="int" />
+        </EntityType>
+        <EntityType Name="PropertyFeature">
+          <Key>
+            <PropertyRef Name="PropertyId" />
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="PropertyId" Type="int" Nullable="false" />
+          <Property Name="FeatureId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyStatus">
+          <Key>
+            <PropertyRef Name="PropertyStatusId" />
+          </Key>
+          <Property Name="PropertyStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Property_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Property1" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Property1">
+              <PropertyRef Name="ParentPropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Property_PropertyStatus">
+          <End Role="PropertyStatus" Type="Self.PropertyStatus" Multiplicity="0..1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyStatus">
+              <PropertyRef Name="PropertyStatusId" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="PropertyStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyFeature_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="1" />
+          <End Role="PropertyFeature" Type="Self.PropertyFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="FeatureId" />
+            </Principal>
+            <Dependent Role="PropertyFeature">
+              <PropertyRef Name="FeatureId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PropertyFeature_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="1" />
+          <End Role="PropertyFeature" Type="Self.PropertyFeature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyFeature">
+              <PropertyRef Name="PropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PropertyManagementDbModelStoreContainer">
+          <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyFeature" EntityType="Self.PropertyFeature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyStatus" EntityType="Self.PropertyStatus" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Property_Property" Association="Self.FK_Property_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Property1" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Property_PropertyStatus" Association="Self.FK_Property_PropertyStatus">
+            <End Role="PropertyStatus" EntitySet="PropertyStatus" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyFeature_Feature" Association="Self.FK_PropertyFeature_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="PropertyFeature" EntitySet="PropertyFeature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PropertyFeature_Property" Association="Self.FK_PropertyFeature_Property">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="PropertyFeature" EntitySet="PropertyFeature" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PropertyManagementDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Size" Type="Double" />
+          <Property Name="Bedrooms" Type="Double" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PropertyStatusId" Type="Int32" />
+          <Property Name="ParentPropertyId" Type="Int32" />
+          <NavigationProperty Name="ParentProperty" Relationship="Self.FK_Property_Property" FromRole="Property" ToRole="Property1" />
+          <NavigationProperty Name="Features" Relationship="PropertyManagementDbModel.PropertyFeature1" FromRole="Property" ToRole="Feature" />
+          <NavigationProperty Name="PropertyStatus" Relationship="PropertyManagementDbModel.FK_Property_PropertyStatus" FromRole="Property" ToRole="PropertyStatu" />
+          <Property Name="Bathrooms" Type="Double" />
+        </EntityType>
+        <Association Name="FK_Property_Property">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Property1" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Property1">
+              <PropertyRef Name="ParentPropertyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PropertyManagementDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Properties" EntityType="Self.Property" />
+          <AssociationSet Name="FK_Property_Property" Association="Self.FK_Property_Property">
+            <End Role="Property" EntitySet="Properties" />
+            <End Role="Property1" EntitySet="Properties" />
+          </AssociationSet>
+          <EntitySet Name="Features" EntityType="PropertyManagementDbModel.Feature" />
+          <AssociationSet Name="PropertyFeature1" Association="PropertyManagementDbModel.PropertyFeature1">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+          <EntitySet Name="PropertyStatus" EntityType="PropertyManagementDbModel.PropertyStatu" />
+          <AssociationSet Name="FK_Property_PropertyStatus" Association="PropertyManagementDbModel.FK_Property_PropertyStatus">
+            <End Role="PropertyStatu" EntitySet="PropertyStatus" />
+            <End Role="Property" EntitySet="Properties" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="FeatureId" />
+          </Key>
+          <Property Name="FeatureId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Properties" Relationship="PropertyManagementDbModel.PropertyFeature1" FromRole="Feature" ToRole="Property" />
+        </EntityType>
+        <Association Name="PropertyFeature1">
+          <End Type="PropertyManagementDbModel.Feature" Role="Feature" Multiplicity="*" />
+          <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="*" />
+        </Association>
+        <EntityType Name="PropertyStatu">
+          <Key>
+            <PropertyRef Name="PropertyStatusId" />
+          </Key>
+          <Property Name="PropertyStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Properties" Relationship="PropertyManagementDbModel.FK_Property_PropertyStatus" FromRole="PropertyStatu" ToRole="Property" />
+        </EntityType>
+        <Association Name="FK_Property_PropertyStatus">
+          <End Type="PropertyManagementDbModel.PropertyStatu" Role="PropertyStatu" Multiplicity="0..1" />
+          <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyStatu">
+              <PropertyRef Name="PropertyStatusId" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="PropertyStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PropertyManagementDbModelStoreContainer" CdmEntityContainer="PropertyManagementDbEntities">
+          <EntitySetMapping Name="Properties">
+            <EntityTypeMapping TypeName="PropertyManagementDbModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="Bathrooms" ColumnName="Bathrooms" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Bedrooms" ColumnName="Bedrooms" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PropertyStatusId" ColumnName="PropertyStatusId" />
+                <ScalarProperty Name="ParentPropertyId" ColumnName="ParentPropertyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="PropertyManagementDbModel.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="PropertyFeature1" TypeName="PropertyManagementDbModel.PropertyFeature1" StoreEntitySet="PropertyFeature">
+            <EndProperty Name="Property">
+              <ScalarProperty Name="Id" ColumnName="PropertyId" />
+            </EndProperty>
+            <EndProperty Name="Feature">
+              <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="PropertyStatus">
+            <EntityTypeMapping TypeName="PropertyManagementDbModel.PropertyStatu">
+              <MappingFragment StoreEntitySet="PropertyStatus">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="PropertyStatusId" ColumnName="PropertyStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

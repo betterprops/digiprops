@@ -8,3 +8,13 @@ D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\E
 D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.csprojResolveAssemblyReference.cache
 D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.dll
 D:\Projects\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.pdb
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\PropertyManagementTool.DataAccess.dll.config
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\PropertyManagementTool.DataAccess.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\PropertyManagementTool.DataAccess.pdb
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.xml
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.csprojResolveAssemblyReference.cache
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.DataAccess\obj\Debug\PropertyManagementTool.DataAccess.pdb

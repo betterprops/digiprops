@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PropertyManagementDbModelStoreContainer" CdmEntityContainer="PropertyManagementDbEntities">
+    <EntitySetMapping Name="Properties">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.Property">
+        <MappingFragment StoreEntitySet="Property">
+          <ScalarProperty Name="Bathrooms" ColumnName="Bathrooms" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Bedrooms" ColumnName="Bedrooms" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="PropertyStatusId" ColumnName="PropertyStatusId" />
+          <ScalarProperty Name="ParentPropertyId" ColumnName="ParentPropertyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Features">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.Feature">
+        <MappingFragment StoreEntitySet="Feature">
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PropertyFeature1" TypeName="PropertyManagementDbModel.PropertyFeature1" StoreEntitySet="PropertyFeature">
+      <EndProperty Name="Property">
+        <ScalarProperty Name="Id" ColumnName="PropertyId" />
+      </EndProperty>
+      <EndProperty Name="Feature">
+        <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="PropertyStatus">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.PropertyStatu">
+        <MappingFragment StoreEntitySet="PropertyStatus">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="PropertyStatusId" ColumnName="PropertyStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

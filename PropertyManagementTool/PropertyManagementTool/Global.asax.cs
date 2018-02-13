@@ -16,6 +16,7 @@ namespace PropertyManagementTool
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            Service.AutoMapperConfig.RegisterMappings();
         }
     }
 }

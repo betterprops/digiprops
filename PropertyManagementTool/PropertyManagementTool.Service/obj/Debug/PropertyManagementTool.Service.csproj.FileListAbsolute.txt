@@ -1,0 +1,14 @@
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.dll.config
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.pdb
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\AutoMapper.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.SqlServer.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.DataAccess.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.DataAccess.pdb
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\AutoMapper.xml
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.xml
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.SqlServer.xml
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.csprojResolveAssemblyReference.cache
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.dll
+D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.pdb
