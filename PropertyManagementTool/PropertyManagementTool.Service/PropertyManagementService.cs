@@ -30,5 +30,10 @@ namespace PropertyManagementTool.Service
 
             return propertyIndexModel;
         }
+
+        public IEnumerable<PropertyStatusModel> GetPropertyStatusList()
+        {
+            return this.Entities.PropertyStatus.ToServiceModels().ToList();
+        }
     }
 }

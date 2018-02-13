@@ -60,6 +60,7 @@
     <Compile Include="Models\FeatureModel.cs" />
     <Compile Include="Models\PropertiesListModel.cs" />
     <Compile Include="Models\PropertyModel.cs" />
+    <Compile Include="Models\PropertyStatusModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyManagementService.cs" />
   </ItemGroup>

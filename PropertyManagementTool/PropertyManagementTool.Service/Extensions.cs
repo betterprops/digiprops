@@ -21,5 +21,16 @@ namespace PropertyManagementTool.Service
             foreach (var prop in properties)
                 yield return prop.ToServiceModel();
         }
+
+        public static PropertyStatusModel ToServiceModel(this PropertyStatu status)
+        {
+            return Mapper.Map<PropertyStatu, PropertyStatusModel>(status);
+        }
+
+        public static IEnumerable<PropertyStatusModel> ToServiceModels(this IEnumerable<PropertyStatu> statusList)
+        {
+            foreach (var s in statusList)
+                yield return s.ToServiceModel();
+        }
     }
 }

@@ -5,7 +5,8 @@
 
 <h2>@ViewBag.Title</h2>
 <br />
-
+@Html.ActionLink("Add new property >>", "Create", "Properties", new { @class = "btn btn-default" })
+<br />
 @if (Model.Properties.Any())
 {
     foreach (var property in Model.Properties)

@@ -11,5 +11,7 @@ namespace PropertyManagementTool.Service
     public interface IPropertyManagementService
     {
         PropertiesListModel GetProperties(int page = 1, int pageSize = 10);
+
+        IEnumerable<PropertyStatusModel> GetPropertyStatusList();
     }
 }
