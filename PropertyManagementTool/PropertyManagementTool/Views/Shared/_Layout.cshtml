@@ -24,6 +24,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
+                        <li>@Html.ActionLink("Properties", "List", "Properties")</li>
                     }
                     else
                     {
