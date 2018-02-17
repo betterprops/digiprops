@@ -35,6 +35,7 @@ namespace PropertyManagementTool.Models
 
         public Nullable<int> ParentPropertyId { get; set; }
 
-        //public ICollection<FeatureModel> Features { get; set; }
+        [Display(Name ="Features")]
+        public ICollection<string> SelectedFeatures { get; set; }
     }
 }

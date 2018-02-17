@@ -34,7 +34,10 @@ namespace PropertyManagementTool.Controllers
         private void OnCreate()
         {
             var statusList = new SelectList(Service.GetPropertyStatusList(), "PropertyStatusId", "Status");
-            ViewBag.PropertyStatusList = statusList; 
+            ViewBag.PropertyStatusList = statusList;
+
+            var featureList = Service.GetFeatures();
+            ViewBag.Features = featureList;
         }
 
         public ActionResult Create()
@@ -48,7 +51,22 @@ namespace PropertyManagementTool.Controllers
         public ActionResult Create(PropertyViewModel model)
         {
             if (ModelState.IsValid)
+            {
+                PropertyModel serviceModel = new PropertyModel
+                {
+                    Address = model.Address,
+                    Bathrooms = model.Bathrooms,
+                    Bedrooms = model.Bedrooms,
+                    Description = model.Description,
+                    PropertyStatusId = model.PropertyStatusId,
+                    Size = model.Size
+                };
+                var features = new List<int>();
+                if (model.SelectedFeatures != null && model.SelectedFeatures.Any())
+                    features = model.SelectedFeatures.Select(f => Convert.ToInt32(f)).ToList();
+                this.Service.CreateProperty((((OwnerModel)Session["SelectedAccount"]).Id), serviceModel, features);
                 return RedirectToAction("List");
+            }
             else
             {
                 OnCreate();

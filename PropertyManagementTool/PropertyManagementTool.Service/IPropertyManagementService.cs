@@ -12,6 +12,8 @@ namespace PropertyManagementTool.Service
     {
         PropertiesListModel GetProperties(int ownerId, int page = 1, int pageSize = 10);
 
+        bool CreateProperty(int ownerId, PropertyModel property, IEnumerable<int> features);
+
         IEnumerable<PropertyStatusModel> GetPropertyStatusList();
 
         IEnumerable<OwnerModel> GetOwnersByUser(string userId);
@@ -21,5 +23,7 @@ namespace PropertyManagementTool.Service
         IEnumerable<OwnerTypeModel> GetOwnerTypes();
 
         bool CreateOwner(OwnerModel owner, string userId);
+
+        IEnumerable<FeatureModel> GetFeatures();
     }
 }

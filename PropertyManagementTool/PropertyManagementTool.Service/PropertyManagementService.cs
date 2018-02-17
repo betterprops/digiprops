@@ -74,5 +74,31 @@ namespace PropertyManagementTool.Service
 
             return true;
         }
+
+        public IEnumerable<FeatureModel> GetFeatures()
+        {
+            return this.Entities.Features.ToServiceModels();
+        }
+
+        public bool CreateProperty(int ownerId, PropertyModel property, IEnumerable<int> features)
+        {
+            var propDb = new Property
+            {
+                Address = property.Address,
+                Bathrooms = property.Bathrooms,
+                Bedrooms = property.Bedrooms,
+                Description = property.Description,
+                OwnerId = ownerId,
+                PropertyStatusId = property.PropertyStatusId,
+                Size = property.Size
+            };
+            if (features.Any())
+                propDb.Features = this.Entities.Features.Where(f => features.Contains(f.FeatureId)).ToList();
+
+            this.Entities.Properties.Add(propDb);
+            this.Entities.SaveChanges();
+
+            return true;
+        }
     }
 }

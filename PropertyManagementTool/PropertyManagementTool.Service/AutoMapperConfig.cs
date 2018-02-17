@@ -24,7 +24,7 @@ namespace PropertyManagementTool.Service
                     d.Type = s.OwnerType.Type;
                 });
                 cfg.CreateMap<OwnerType, OwnerTypeModel>();
-                
+                cfg.CreateMap<Feature, FeatureModel>();
             });
         }
     }

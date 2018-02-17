@@ -81,6 +81,24 @@
     </div>
     <br />
     <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.SelectedFeatures, new { @class="control-label" })
+        </div>
+        <div class="col-md-6">
+            @foreach (var item in ((IEnumerable<PropertyManagementTool.Service.Models.FeatureModel>)ViewBag.Features))
+            {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                            name="SelectedFeatures"
+                            value="@item.FeatureId" /> @item.Description
+                    </label>
+                </div>
+            }
+            @Html.ValidationMessageFor(m => m.SelectedFeatures)
+        </div>
+    </div>
+    <div class="row">
         <input type="submit" class="btn btn-default" value="Save" />
     </div>
 }

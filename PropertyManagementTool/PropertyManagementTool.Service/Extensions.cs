@@ -55,5 +55,16 @@ namespace PropertyManagementTool.Service
             foreach (var s in ownerTypes)
                 yield return s.ToServiceModel();
         }
+
+        public static FeatureModel ToServiceModel(this Feature feature)
+        {
+            return Mapper.Map<Feature, FeatureModel>(feature);
+        }
+
+        public static IEnumerable<FeatureModel> ToServiceModels(this IEnumerable<Feature> features)
+        {
+            foreach (var prop in features)
+                yield return prop.ToServiceModel();
+        }
     }
 }
