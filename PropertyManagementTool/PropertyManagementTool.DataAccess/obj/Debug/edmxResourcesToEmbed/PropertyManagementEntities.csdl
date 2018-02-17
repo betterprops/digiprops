@@ -15,6 +15,9 @@
     <NavigationProperty Name="Features" Relationship="PropertyManagementDbModel.PropertyFeature1" FromRole="Property" ToRole="Feature" />
     <NavigationProperty Name="PropertyStatus" Relationship="PropertyManagementDbModel.FK_Property_PropertyStatus" FromRole="Property" ToRole="PropertyStatu" />
     <Property Name="Bathrooms" Type="Double" />
+    <Property Name="OwnerId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Owner" Relationship="PropertyManagementDbModel.FK_Property_Owner" FromRole="Property" ToRole="Owner" />
+    <NavigationProperty Name="Owners" Relationship="PropertyManagementDbModel.PropertyOwner" FromRole="Property" ToRole="Owner" />
   </EntityType>
   <Association Name="FK_Property_Property">
     <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
@@ -43,6 +46,25 @@
     <AssociationSet Name="FK_Property_PropertyStatus" Association="PropertyManagementDbModel.FK_Property_PropertyStatus">
       <End Role="PropertyStatu" EntitySet="PropertyStatus" />
       <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <EntitySet Name="Owners" EntityType="PropertyManagementDbModel.Owner" />
+    <EntitySet Name="OwnerTypes" EntityType="PropertyManagementDbModel.OwnerType" />
+    <AssociationSet Name="FK_Property_Owner" Association="PropertyManagementDbModel.FK_Property_Owner">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PropertyOwner_PropertyOwnerType" Association="PropertyManagementDbModel.FK_PropertyOwner_PropertyOwnerType">
+      <End Role="OwnerType" EntitySet="OwnerTypes" />
+      <End Role="Owner" EntitySet="Owners" />
+    </AssociationSet>
+    <AssociationSet Name="PropertyOwner" Association="PropertyManagementDbModel.PropertyOwner">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Property" EntitySet="Properties" />
+    </AssociationSet>
+    <EntitySet Name="AspNetUsers" EntityType="PropertyManagementDbModel.AspNetUser" />
+    <AssociationSet Name="FK_Owner_AspNetUsers" Association="PropertyManagementDbModel.FK_Owner_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="Owner" EntitySet="Owners" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Feature">
@@ -74,6 +96,86 @@
       </Principal>
       <Dependent Role="Property">
         <PropertyRef Name="PropertyStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Owner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TypeId" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Properties" Relationship="PropertyManagementDbModel.FK_Property_Owner" FromRole="Owner" ToRole="Property" />
+    <NavigationProperty Name="OwnerType" Relationship="PropertyManagementDbModel.FK_PropertyOwner_PropertyOwnerType" FromRole="Owner" ToRole="OwnerType" />
+    <NavigationProperty Name="Properties1" Relationship="PropertyManagementDbModel.PropertyOwner" FromRole="Owner" ToRole="Property" />
+    <NavigationProperty Name="AspNetUser" Relationship="PropertyManagementDbModel.FK_Owner_AspNetUsers" FromRole="Owner" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="OwnerType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Owners" Relationship="PropertyManagementDbModel.FK_PropertyOwner_PropertyOwnerType" FromRole="OwnerType" ToRole="Owner" />
+  </EntityType>
+  <Association Name="FK_Property_Owner">
+    <End Type="PropertyManagementDbModel.Owner" Role="Owner" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Property">
+        <PropertyRef Name="OwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PropertyOwner_PropertyOwnerType">
+    <End Type="PropertyManagementDbModel.OwnerType" Role="OwnerType" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Owner" Role="Owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OwnerType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Owner">
+        <PropertyRef Name="TypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PropertyOwner">
+    <End Type="PropertyManagementDbModel.Owner" Role="Owner" Multiplicity="*" />
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="*" />
+  </Association>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Owners" Relationship="PropertyManagementDbModel.FK_Owner_AspNetUsers" FromRole="AspNetUser" ToRole="Owner" />
+  </EntityType>
+  <Association Name="FK_Owner_AspNetUsers">
+    <End Type="PropertyManagementDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Owner" Role="Owner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Owner">
+        <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

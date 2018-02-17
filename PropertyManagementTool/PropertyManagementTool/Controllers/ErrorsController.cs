@@ -1,5 +1,4 @@
-﻿using PropertyManagementTool.CustomAttributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,10 +6,9 @@ using System.Web.Mvc;
 
 namespace PropertyManagementTool.Controllers
 {
-    [AccountRequired]
-    public class TenantsController : Controller
+    public class ErrorsController : Controller
     {
-        // GET: Tenants
+        // GET: Errors
         public ActionResult Index()
         {
             return View();

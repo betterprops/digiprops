@@ -11,6 +11,13 @@
         <AssociationConnector Association="PropertyManagementDbModel.PropertyFeature1" />
         <EntityTypeShape EntityType="PropertyManagementDbModel.PropertyStatu" Width="1.5" PointX="0.75" PointY="1.875" />
         <AssociationConnector Association="PropertyManagementDbModel.FK_Property_PropertyStatus" />
+        <EntityTypeShape EntityType="PropertyManagementDbModel.Owner" Width="1.5" PointX="0.75" PointY="8.625" />
+        <EntityTypeShape EntityType="PropertyManagementDbModel.OwnerType" Width="1.5" PointX="0.75" PointY="12" />
+        <AssociationConnector Association="PropertyManagementDbModel.FK_Property_Owner" />
+        <AssociationConnector Association="PropertyManagementDbModel.FK_PropertyOwner_PropertyOwnerType" />
+        <AssociationConnector Association="PropertyManagementDbModel.PropertyOwner" />
+        <EntityTypeShape EntityType="PropertyManagementDbModel.AspNetUser" Width="1.5" PointX="0.75" PointY="15.25" />
+        <AssociationConnector Association="PropertyManagementDbModel.FK_Owner_AspNetUsers" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -1,0 +1,47 @@
+﻿@model PropertyManagementTool.Models.OwnerViewModel
+@{
+    ViewBag.Title = "Create Account";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Name, new { @class= "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.TypeId, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.TypeId, ((SelectList)ViewBag.OwnerTypes), new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TypeId)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.Address, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <input type="submit" class="btn btn-default" value="Save" />
+    </div>
+}

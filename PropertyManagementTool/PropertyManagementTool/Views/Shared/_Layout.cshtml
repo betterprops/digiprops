@@ -23,6 +23,7 @@
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
+                        <li>@Html.ActionLink("Switch Account", "SelectAccount", "Accounts")</li>
                         <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
                         <li>@Html.ActionLink("Properties", "List", "Properties")</li>
                     }
@@ -38,14 +39,13 @@
         </div>
     </div>
     <div class="container body-content">
-        <div class="row" style="float:right">
-            <br />
-            <span>Select account</span>
-            <select>
-                <option>Better Props LLC</option>
-                <option>Personal</option>
-            </select>
-        </div>
+        @if (Request.IsAuthenticated && Session != null && Session["SelectedAccount"] != null)
+        {
+            <div class="row" style="float:right">
+                <br />
+                <span>Selected account: @(((PropertyManagementTool.Service.Models.OwnerModel)Session["SelectedAccount"]).Name)</span>
+            </div>
+        }
         @RenderBody()
         <hr />
         <footer>

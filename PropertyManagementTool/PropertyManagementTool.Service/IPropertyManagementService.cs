@@ -10,8 +10,16 @@ namespace PropertyManagementTool.Service
 {
     public interface IPropertyManagementService
     {
-        PropertiesListModel GetProperties(int page = 1, int pageSize = 10);
+        PropertiesListModel GetProperties(int ownerId, int page = 1, int pageSize = 10);
 
         IEnumerable<PropertyStatusModel> GetPropertyStatusList();
+
+        IEnumerable<OwnerModel> GetOwnersByUser(string userId);
+
+        OwnerModel GetOwnerById(int id, string userId);
+
+        IEnumerable<OwnerTypeModel> GetOwnerTypes();
+
+        bool CreateOwner(OwnerModel owner, string userId);
     }
 }

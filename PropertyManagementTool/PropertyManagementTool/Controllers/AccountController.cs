@@ -51,13 +51,14 @@ namespace PropertyManagementTool.Controllers
                 _userManager = value;
             }
         }
-
+        
         //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = Url.Action("Index", "Dashboard");
+            Session["SelectedAccount"] = null;
+            ViewBag.ReturnUrl = Url.Action("SelectAccount", "Accounts");
             return View();
         }
 
@@ -392,6 +393,7 @@ namespace PropertyManagementTool.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session["SelectedAccount"] = null;
             return RedirectToAction("Index", "Home");
         }
 

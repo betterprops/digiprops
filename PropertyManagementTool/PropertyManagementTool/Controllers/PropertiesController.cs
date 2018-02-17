@@ -1,4 +1,5 @@
-﻿using PropertyManagementTool.Models;
+﻿using PropertyManagementTool.CustomAttributes;
+using PropertyManagementTool.Models;
 using PropertyManagementTool.Service;
 using PropertyManagementTool.Service.Models;
 using System;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace PropertyManagementTool.Controllers
 {
+    [AccountRequired]
     public class PropertiesController : Controller
     {
         private IPropertyManagementService Service { get; set; }
@@ -26,7 +28,7 @@ namespace PropertyManagementTool.Controllers
 
         public ActionResult List(int page = 1, int pageSize = 10)
         {
-            return View(Service.GetProperties(page, pageSize));
+            return View(Service.GetProperties(((OwnerModel)Session["SelectedAccount"]).Id, page, pageSize));
         }
 
         private void OnCreate()

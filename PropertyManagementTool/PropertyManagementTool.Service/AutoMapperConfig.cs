@@ -19,6 +19,12 @@ namespace PropertyManagementTool.Service
                 {
                     d.PropertyStatus = s.PropertyStatus.Status;
                 });
+                cfg.CreateMap<Owner, OwnerModel>().AfterMap((s, d) =>
+                {
+                    d.Type = s.OwnerType.Type;
+                });
+                cfg.CreateMap<OwnerType, OwnerTypeModel>();
+                
             });
         }
     }

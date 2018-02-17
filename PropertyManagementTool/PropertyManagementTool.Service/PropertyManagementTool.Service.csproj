@@ -58,6 +58,8 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="IPropertyManagementService.cs" />
     <Compile Include="Models\FeatureModel.cs" />
+    <Compile Include="Models\OwnerModel.cs" />
+    <Compile Include="Models\OwnerTypeModel.cs" />
     <Compile Include="Models\PropertiesListModel.cs" />
     <Compile Include="Models\PropertyModel.cs" />
     <Compile Include="Models\PropertyStatusModel.cs" />

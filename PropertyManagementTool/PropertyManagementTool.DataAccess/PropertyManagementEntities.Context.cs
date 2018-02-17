@@ -28,5 +28,8 @@ namespace PropertyManagementTool.DataAccess
         public virtual DbSet<Property> Properties { get; set; }
         public virtual DbSet<Feature> Features { get; set; }
         public virtual DbSet<PropertyStatu> PropertyStatus { get; set; }
+        public virtual DbSet<Owner> Owners { get; set; }
+        public virtual DbSet<OwnerType> OwnerTypes { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
     }
 }

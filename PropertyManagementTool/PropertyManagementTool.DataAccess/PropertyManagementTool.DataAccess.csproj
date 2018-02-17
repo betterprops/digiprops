@@ -51,7 +51,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Feature.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Owner.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OwnerType.cs">
       <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

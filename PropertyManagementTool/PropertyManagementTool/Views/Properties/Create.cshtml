@@ -13,21 +13,21 @@
 
     <div class="row">
         <div class="col-md-2">
-            @Html.LabelFor(m => m.Address)
+            @Html.LabelFor(m => m.Address, new { @class = "control-label" })
         </div>
         <div class="col-md-6">
-            @Html.TextBoxFor(m => m.Address)
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Address)
         </div>
     </div>
     <br />
     <div class="row">
         <div class="col-md-2">
-            @Html.LabelFor(m => m.Size)
+            @Html.LabelFor(m => m.Size, new { @class = "control-label" })
         </div>
 
         <div class="col-md-6">
-            @Html.TextBoxFor(m => m.Size)
+            @Html.TextBoxFor(m => m.Size, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Size)
         </div>
     </div>
@@ -35,11 +35,11 @@
     <div class="row">
 
         <div class="col-md-2">
-            @Html.LabelFor(m => m.Bedrooms)
+            @Html.LabelFor(m => m.Bedrooms, new { @class = "control-label" })
         </div>
 
         <div class="col-md-6">
-            @Html.TextBoxFor(m => m.Bedrooms)
+            @Html.TextBoxFor(m => m.Bedrooms, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Bedrooms)
         </div>
     </div>
@@ -47,11 +47,11 @@
     <div class="row">
 
         <div class="col-md-2">
-            @Html.LabelFor(m => m.Bathrooms)
+            @Html.LabelFor(m => m.Bathrooms, new { @class = "control-label" })
         </div>
 
         <div class="col-md-6">
-            @Html.TextBoxFor(m => m.Bathrooms)
+            @Html.TextBoxFor(m => m.Bathrooms, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Bathrooms)
         </div>
     </div>
@@ -59,11 +59,11 @@
     <div class="row">
 
         <div class="col-md-2">
-            @Html.LabelFor(m => m.Description)
+            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
         </div>
 
         <div class="col-md-6">
-            @Html.TextAreaFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.Description)
         </div>
     </div>
@@ -71,11 +71,11 @@
     <div class="row">
 
         <div class="col-md-2">
-            @Html.LabelFor(m => m.PropertyStatusId)
+            @Html.LabelFor(m => m.PropertyStatusId, new { @class = "control-label" })
         </div>
 
         <div class="col-md-6">
-            @Html.DropDownListFor(m => m.PropertyStatusId, (SelectList)ViewBag.PropertyStatusList)
+            @Html.DropDownListFor(m => m.PropertyStatusId, (SelectList)ViewBag.PropertyStatusList, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.PropertyStatusId)
         </div>
     </div>

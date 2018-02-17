@@ -1,0 +1,27 @@
+﻿@model PropertyManagementTool.Models.SelectOwnerViewModel
+@{
+    ViewBag.Title = "Select Account";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label" for="account">My Accounts:</label>
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.OwnersList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Id)
+        </div>
+    </div>
+
+    <div class="row">
+        <input type="submit" class="btn btn-default" value="Select" />
+    </div>
+}

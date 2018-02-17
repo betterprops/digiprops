@@ -19,6 +19,7 @@ namespace PropertyManagementTool.DataAccess
         {
             this.ParentProperty = new HashSet<Property>();
             this.Features = new HashSet<Feature>();
+            this.Owners = new HashSet<Owner>();
         }
     
         public int Id { get; set; }
@@ -29,11 +30,15 @@ namespace PropertyManagementTool.DataAccess
         public Nullable<int> PropertyStatusId { get; set; }
         public Nullable<int> ParentPropertyId { get; set; }
         public Nullable<double> Bathrooms { get; set; }
+        public int OwnerId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Property> ParentProperty { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feature> Features { get; set; }
         public virtual PropertyStatu PropertyStatus { get; set; }
+        public virtual Owner Owner { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Owner> Owners { get; set; }
     }
 }
