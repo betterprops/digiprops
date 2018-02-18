@@ -1,0 +1,94 @@
+﻿@model PropertyManagementTool.Models.PropertyEditViewModel
+@{
+    ViewBag.Title = "Property Details";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+    </div>
+    <div class="col-md-6">
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Size, new { @class = "control-label" })
+    </div>
+
+    <div class="col-md-6">
+        @Html.TextBoxFor(m => m.Size, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<br />
+<div class="row">
+
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Bedrooms, new { @class = "control-label" })
+    </div>
+
+    <div class="col-md-6">
+        @Html.TextBoxFor(m => m.Bedrooms, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<br />
+<div class="row">
+
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Bathrooms, new { @class = "control-label" })
+    </div>
+
+    <div class="col-md-6">
+        @Html.TextBoxFor(m => m.Bathrooms, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<br />
+<div class="row">
+
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+    </div>
+
+    <div class="col-md-6">
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<br />
+<div class="row">
+
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.PropertyStatusId, new { @class = "control-label" })
+    </div>
+
+    <div class="col-md-6">
+        @Html.TextBoxFor(m => m.PropertyStatus, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        @Html.LabelFor(m => m.SelectedFeatures, new { @class = "control-label" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        @if (Model.Features != null && Model.Features.Any())
+        {
+            <ul>
+                @foreach (var item in Model.Features)
+                {
+                    <li>@item.Description</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <span style="font-style:italic">No features to display.</span>
+        }
+    </div>
+</div>
+

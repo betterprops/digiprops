@@ -73,5 +73,11 @@ namespace PropertyManagementTool.Controllers
                 return View(model);
             }
         }
+
+        public ActionResult Details(int pId)
+        {
+            var propDb = Service.GetPropertyById(pId, (((OwnerModel)Session["SelectedAccount"]).Id), User.Identity.Name);
+            return View(propDb.ToEditViewModel());
+        }
     }
 }

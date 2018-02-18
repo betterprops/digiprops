@@ -6,8 +6,9 @@ using System.Web;
 
 namespace PropertyManagementTool.Models
 {
-    public class PropertyViewModel : PropertyViewModelBase
+    public class PropertyEditViewModel : PropertyViewModelBase
     {
+        [Required]
         public int Id { get; set; }
     }
 }

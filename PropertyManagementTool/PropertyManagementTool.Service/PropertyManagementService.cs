@@ -100,5 +100,13 @@ namespace PropertyManagementTool.Service
 
             return true;
         }
+
+        public PropertyModel GetPropertyById(int propId, int ownerId, string username)
+        {
+            var propDb = this.Entities.Properties.Find(propId);
+            if (propDb.OwnerId == ownerId && propDb.Owner.AspNetUser.UserName == username)
+                return propDb.ToServiceModel();
+            return null;
+        }
     }
 }

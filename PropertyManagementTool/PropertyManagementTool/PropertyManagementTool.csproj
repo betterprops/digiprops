@@ -213,6 +213,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperClientProfile.cs" />
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -228,6 +230,7 @@
     <Compile Include="Controllers\TenantsController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="CustomAttributes\AccountRequiredAttribute.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -235,7 +238,9 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OwnerViewModel.cs" />
+    <Compile Include="Models\PropertyEditViewModel.cs" />
     <Compile Include="Models\PropertyViewModel.cs" />
+    <Compile Include="Models\PropertyViewModelBase.cs" />
     <Compile Include="Models\SelectOwnerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -307,6 +312,7 @@
     <Content Include="Views\Accounts\SelectAccount.cshtml" />
     <Content Include="Views\Accounts\Create.cshtml" />
     <Content Include="Views\Errors\Index.cshtml" />
+    <Content Include="Views\Properties\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
