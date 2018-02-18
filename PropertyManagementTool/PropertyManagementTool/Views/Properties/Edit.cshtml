@@ -91,9 +91,14 @@
             {
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"
-                               name="SelectedFeatures"
-                               value="@item.FeatureId" /> @item.Description
+                        @if (Model.Features.Select(x => x.FeatureId).Contains(item.FeatureId))
+                        {
+                            <input type="checkbox" checked name="SelectedFeatures" value="@item.FeatureId" /> @item.Description
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="SelectedFeatures" value="@item.FeatureId" /> @item.Description
+                        }
                         </label>
                     </div>
             }

@@ -112,8 +112,21 @@ namespace PropertyManagementTool.Service
             propDb.PropertyStatusId = property.PropertyStatusId;
             propDb.Size = property.Size;
 
-            if (features.Any())
-                propDb.Features = this.Entities.Features.Where(f => features.Contains(f.FeatureId)).ToList();
+            var currentFeatures = propDb.Features;
+
+            var featuresToDelete = propDb.Features.Where(f => features == null || !features.Contains(f.FeatureId)).ToArray();
+
+            var featuresToAdd = features != null ? features.Where(f => !currentFeatures.Select(c => c.FeatureId).Contains(f)) : new List<int>();
+                        
+            foreach(var d in featuresToDelete)
+            {
+                propDb.Features.Remove(d);
+            }
+
+            foreach(var a in featuresToAdd)
+            {
+                propDb.Features.Add(this.Entities.Features.Find(a));
+            }
             
             this.Entities.SaveChanges();
             return true;
