@@ -1,0 +1,106 @@
+﻿@model PropertyManagementTool.Models.PropertyEditViewModel
+@{
+    ViewBag.Title = "Edit Property";
+}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+        </div>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Address)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Size, new { @class = "control-label" })
+        </div>
+
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Size, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Size)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Bedrooms, new { @class = "control-label" })
+        </div>
+
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Bedrooms, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Bedrooms)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Bathrooms, new { @class = "control-label" })
+        </div>
+
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.Bathrooms, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Bathrooms)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+        </div>
+
+        <div class="col-md-6">
+            @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.PropertyStatusId, new { @class = "control-label" })
+        </div>
+
+        <div class="col-md-6">
+            @Html.DropDownListFor(m => m.PropertyStatusId, (SelectList)ViewBag.PropertyStatusList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PropertyStatusId)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.SelectedFeatures, new { @class = "control-label" })
+        </div>
+        <div class="col-md-6">
+            @foreach (var item in ((IEnumerable<PropertyManagementTool.Service.Models.FeatureModel>)ViewBag.Features))
+            {
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox"
+                               name="SelectedFeatures"
+                               value="@item.FeatureId" /> @item.Description
+                        </label>
+                    </div>
+            }
+            @Html.ValidationMessageFor(m => m.SelectedFeatures)
+        </div>
+    </div>
+    <div class="row">
+        <input type="submit" class="btn btn-default" value="Save" />
+    </div>
+}

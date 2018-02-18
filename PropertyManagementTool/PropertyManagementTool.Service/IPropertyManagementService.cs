@@ -14,6 +14,8 @@ namespace PropertyManagementTool.Service
 
         bool CreateProperty(int ownerId, PropertyModel property, IEnumerable<int> features);
 
+        bool EditProperty(int ownerId, PropertyModel property, IEnumerable<int> features);
+
         IEnumerable<PropertyStatusModel> GetPropertyStatusList();
 
         IEnumerable<OwnerModel> GetOwnersByUser(string userId);

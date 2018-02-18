@@ -79,5 +79,40 @@ namespace PropertyManagementTool.Controllers
             var propDb = Service.GetPropertyById(pId, (((OwnerModel)Session["SelectedAccount"]).Id), User.Identity.Name);
             return View(propDb.ToEditViewModel());
         }
+
+        public ActionResult Edit(int pId)
+        {
+            var propDb = Service.GetPropertyById(pId, (((OwnerModel)Session["SelectedAccount"]).Id), User.Identity.Name);
+            OnCreate();
+            return View(propDb.ToEditViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Edit(PropertyEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                PropertyModel serviceModel = new PropertyModel
+                {
+                    Id = model.Id,
+                    Address = model.Address,
+                    Bathrooms = model.Bathrooms,
+                    Bedrooms = model.Bedrooms,
+                    Description = model.Description,
+                    PropertyStatusId = model.PropertyStatusId,
+                    Size = model.Size
+                };
+                var features = new List<int>();
+                if (model.SelectedFeatures != null && model.SelectedFeatures.Any())
+                    features = model.SelectedFeatures.Select(f => Convert.ToInt32(f)).ToList();
+                this.Service.EditProperty((((OwnerModel)Session["SelectedAccount"]).Id), serviceModel, features);
+                return RedirectToAction("Details", new { pId = model.Id });
+            }
+            else
+            {
+                OnCreate();
+                return View(model);
+            }
+        }
     }
 }

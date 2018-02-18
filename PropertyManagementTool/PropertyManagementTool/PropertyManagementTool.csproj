@@ -313,6 +313,7 @@
     <Content Include="Views\Accounts\Create.cshtml" />
     <Content Include="Views\Errors\Index.cshtml" />
     <Content Include="Views\Properties\Details.cshtml" />
+    <Content Include="Views\Properties\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

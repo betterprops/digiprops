@@ -101,6 +101,24 @@ namespace PropertyManagementTool.Service
             return true;
         }
 
+        public bool EditProperty(int ownerId, PropertyModel property, IEnumerable<int> features)
+        {
+            var propDb = this.Entities.Properties.Find(property.Id);
+
+            propDb.Address = property.Address;
+            propDb.Bathrooms = property.Bathrooms;
+            propDb.Bedrooms = property.Bedrooms;
+            propDb.Description = property.Description;
+            propDb.PropertyStatusId = property.PropertyStatusId;
+            propDb.Size = property.Size;
+
+            if (features.Any())
+                propDb.Features = this.Entities.Features.Where(f => features.Contains(f.FeatureId)).ToList();
+            
+            this.Entities.SaveChanges();
+            return true;
+        }
+
         public PropertyModel GetPropertyById(int propId, int ownerId, string username)
         {
             var propDb = this.Entities.Properties.Find(propId);
