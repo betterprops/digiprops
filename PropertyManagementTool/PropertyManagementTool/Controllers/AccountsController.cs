@@ -50,13 +50,17 @@ namespace PropertyManagementTool.Controllers
         }
 
         [HttpPost]
-        public ActionResult SelectAccount(SelectOwnerViewModel owner)
+        public ActionResult SelectAccount(SelectOwnerViewModel owner, string command)
         {
             if(owner.Id <= 0)
             {
                 ModelState.AddModelError("Id", "You must select an account from the list. If you do not have accounts then create one.");
                 OnSelectAccount();
                 return View(owner);
+            }
+            if(command == "Edit")
+            {
+                return RedirectToAction("Edit", new { oId = owner.Id });
             }
             var selectedOwner = Service.GetOwnerById(owner.Id, User.Identity.Name);
             if(selectedOwner != null)
@@ -88,6 +92,35 @@ namespace PropertyManagementTool.Controllers
                 TypeId = owner.TypeId
             };
             if(!Service.CreateOwner(ownerModel, User.Identity.Name))
+            {
+                return RedirectToAction("Index", "Errors");
+            }
+            return RedirectToAction("SelectAccount");
+        }
+
+        public ActionResult Edit(int oId)
+        {
+            OnCreate();
+            var owner = Service.GetOwnerById(oId, User.Identity.Name);
+            return View(owner.ToEditViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult Edit(OwnerViewModel owner)
+        {
+            if (!ModelState.IsValid)
+            {
+                OnCreate();
+                return View(owner);
+            }
+            var ownerModel = new Service.Models.OwnerModel
+            {
+                Id = owner.Id,
+                Address = owner.Address,
+                Name = owner.Name,
+                TypeId = owner.TypeId
+            };
+            if (!Service.EditOwner(ownerModel, User.Identity.Name))
             {
                 return RedirectToAction("Index", "Errors");
             }

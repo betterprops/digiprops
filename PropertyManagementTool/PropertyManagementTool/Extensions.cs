@@ -19,5 +19,15 @@ namespace PropertyManagementTool
         {
             return Mapper.Map<PropertyModel, PropertyEditViewModel>(model);
         }
+
+        public static OwnerViewModel ToViewModel(this OwnerModel model)
+        {
+            return Mapper.Map<OwnerModel, OwnerViewModel>(model);
+        }
+
+        public static OwnerEditViewModel ToEditViewModel(this OwnerModel model)
+        {
+            return Mapper.Map<OwnerModel, OwnerEditViewModel>(model);
+        }
     }
 }

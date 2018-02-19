@@ -75,6 +75,20 @@ namespace PropertyManagementTool.Service
             return true;
         }
 
+        public bool EditOwner(OwnerModel owner, string userId)
+        {
+            var ownerDb = this.Entities.Owners.Find(owner.Id);
+            if(ownerDb != null && ownerDb.AspNetUser.UserName == userId)
+            {
+                ownerDb.Address = owner.Address;
+                ownerDb.Name = owner.Name;
+                ownerDb.TypeId = owner.TypeId;
+                Entities.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public IEnumerable<FeatureModel> GetFeatures()
         {
             return this.Entities.Features.ToServiceModels();

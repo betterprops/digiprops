@@ -12,6 +12,8 @@ namespace PropertyManagementTool.App_Start
         {
             CreateMap<Models.PropertyViewModel, Service.Models.PropertyModel>();
             CreateMap<Service.Models.PropertyModel, Models.PropertyEditViewModel>();
+            CreateMap<Service.Models.OwnerModel, Models.OwnerViewModel>();
+            CreateMap<Service.Models.OwnerModel, Models.OwnerEditViewModel>();
         }
     }
 }
