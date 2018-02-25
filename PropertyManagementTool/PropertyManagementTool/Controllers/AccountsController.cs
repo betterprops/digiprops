@@ -62,6 +62,10 @@ namespace PropertyManagementTool.Controllers
             {
                 return RedirectToAction("Edit", new { oId = owner.Id });
             }
+            if(command == "Create")
+            {
+                return RedirectToAction("Create");
+            }
             var selectedOwner = Service.GetOwnerById(owner.Id, User.Identity.Name);
             if(selectedOwner != null)
             {
