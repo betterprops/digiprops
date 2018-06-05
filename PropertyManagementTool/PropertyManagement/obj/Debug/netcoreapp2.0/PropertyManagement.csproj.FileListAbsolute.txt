@@ -1,0 +1,12 @@
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\bin\Debug\netcoreapp2.0\PropertyManagement.deps.json
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\bin\Debug\netcoreapp2.0\PropertyManagement.runtimeconfig.json
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\bin\Debug\netcoreapp2.0\PropertyManagement.runtimeconfig.dev.json
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\bin\Debug\netcoreapp2.0\PropertyManagement.dll
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\bin\Debug\netcoreapp2.0\PropertyManagement.pdb
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\obj\Debug\netcoreapp2.0\PropertyManagement.csprojAssemblyReference.cache
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\obj\Debug\netcoreapp2.0\PropertyManagement.csproj.CoreCompileInputs.cache
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\obj\Debug\netcoreapp2.0\PropertyManagement.AssemblyInfoInputs.cache
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\obj\Debug\netcoreapp2.0\PropertyManagement.AssemblyInfo.cs
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\obj\Debug\netcoreapp2.0\PropertyManagement.dll
+D:\Projects\Open.IT\digiprops\PropertyManagementTool\PropertyManagement\obj\Debug\netcoreapp2.0\PropertyManagement.pdb

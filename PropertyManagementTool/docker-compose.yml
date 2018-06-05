@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  propertymanagement:
+    image: ${DOCKER_REGISTRY}propertymanagement
+    build:
+      context: .
+      dockerfile: PropertyManagement/Dockerfile
