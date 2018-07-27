@@ -1,0 +1,86 @@
+﻿@model PropertyManagementTool.Service.Models.TransactionsListModel
+@{
+    ViewBag.Title = "Transactions";
+}
+<br/>
+<h5>@ViewBag.Title</h5>
+<hr />
+@Html.ActionLink("Add new transaction >>", "Create", "Transactions", new { @class = "btn btn-primary" })
+<br />
+@if (Model.Transactions.Any())
+{
+    <br/>
+    <div class="row">
+        <div class="col-md-2"><b>Date Created</b></div>
+        <div class="col-md-2"><b>Property</b></div>
+        <div class="col-md-2"><b>Amount</b></div>
+        <div class="col-md-2"><b>Category</b></div>
+    </div>
+    foreach (var transaction in Model.Transactions)
+    {
+        <div class="row">
+            <div class="col-md-2">@transaction.DateCreated</div>
+            <div class="col-md-2">@transaction.PropertyAddress</div>
+            <div class="col-md-2">@($"{transaction.Amount:C}")</div>
+            <div class="col-md-2">@transaction.CategoryLabel</div>
+            <div class="col-md-2">@Html.ActionLink("More >>", "Details", "Transactions", new { tId = transaction.TransactionId }, null)</div>
+        </div>
+    }
+    <hr />
+    <div class="row">
+        <div class="page-div col-md-10">
+            <ul class="pagination">
+                @if (Model.Page > 1)
+                {
+                    var prevPage = Model.Page - 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Transactions")?page=@prevPage&pageSize=@Model.PageSize' class="page-link active"><</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link"><</a>
+                    </li>
+                }
+                <li class="page-item active">
+                    <a href='#' class="page-link active">@Model.Page</a>
+                </li>
+                @if (Model.Page * Model.PageSize < Model.Total)
+                {
+                    var nextPage = Model.Page + 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Transactions")?page=@nextPage&pageSize=@Model.PageSize' class="page-link">></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link">></a>
+                    </li>
+                }
+
+                @*<li class="page-item">
+                    <label>Page size:</label>&nbsp;@Html.TextBoxFor(m => m.PageSize, new { style = "width:30px", onchange = "PageSizeChanged();" })
+                </li>*@
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <span style="font-style:italic">Displaying @Model.Transactions.Count() out of @Model.Total.</span>
+        </div>
+    </div>
+
+    @section scripts
+    {
+        <script language="javascript">
+            function PageSizeChanged() {
+                window.location = '@Url.Action("List", "Transactions")?page=1&pageSize=' + $('#PageSize').val();
+            }
+        </script>
+    }
+}
+else
+{
+    <br />
+    <span style="font-style:italic">No transactions to display.</span>
+}

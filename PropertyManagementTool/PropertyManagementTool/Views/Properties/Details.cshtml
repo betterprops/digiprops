@@ -3,10 +3,11 @@
     ViewBag.Title = "Property Details";
 }
 
-<h2>@ViewBag.Title</h2>
-<br />
+<br/>
+<h5>@ViewBag.Title</h5>
+<hr />
 
-<div class="row">
+<div class="form-group">
     <div class="col-md-2">
         @Html.LabelFor(m => m.Address, new { @class = "control-label" })
     </div>
@@ -14,8 +15,7 @@
         @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @readonly = "true" })
     </div>
 </div>
-<br />
-<div class="row">
+<div class="form-group">
     <div class="col-md-2">
         @Html.LabelFor(m => m.Size, new { @class = "control-label" })
     </div>
@@ -24,8 +24,7 @@
         @Html.TextBoxFor(m => m.Size, new { @class = "form-control", @readonly = "true" })
     </div>
 </div>
-<br />
-<div class="row">
+<div class="form-group">
 
     <div class="col-md-2">
         @Html.LabelFor(m => m.Bedrooms, new { @class = "control-label" })
@@ -35,8 +34,7 @@
         @Html.TextBoxFor(m => m.Bedrooms, new { @class = "form-control", @readonly = "true" })
     </div>
 </div>
-<br />
-<div class="row">
+<div class="form-group">
 
     <div class="col-md-2">
         @Html.LabelFor(m => m.Bathrooms, new { @class = "control-label" })
@@ -46,8 +44,7 @@
         @Html.TextBoxFor(m => m.Bathrooms, new { @class = "form-control", @readonly = "true" })
     </div>
 </div>
-<br />
-<div class="row">
+<div class="form-group">
 
     <div class="col-md-2">
         @Html.LabelFor(m => m.Description, new { @class = "control-label" })
@@ -57,8 +54,7 @@
         @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @readonly = "true" })
     </div>
 </div>
-<br />
-<div class="row">
+<div class="form-group">
 
     <div class="col-md-2">
         @Html.LabelFor(m => m.PropertyStatusId, new { @class = "control-label" })
@@ -66,15 +62,16 @@
 
     <div class="col-md-6">
         @Html.TextBoxFor(m => m.PropertyStatus, new { @class = "form-control", @readonly = "true" })
+        @if (Model.PropertyStatusId == 2 && Model.ActiveLeaseId > 0) // Leased
+        {
+            @Html.ActionLink("Lease Details", "Details", "Leases", new { lId = Model.ActiveLeaseId }, null)
+        }
     </div>
 </div>
-<br />
-<div class="row">
+<div class="form-group">
     <div class="col-md-8">
         @Html.LabelFor(m => m.SelectedFeatures, new { @class = "control-label" })
     </div>
-</div>
-<div class="row">
     <div class="col-md-8">
         @if (Model.Features != null && Model.Features.Any())
         {
@@ -91,6 +88,35 @@
         }
     </div>
 </div>
-
-@Html.ActionLink("Edit >>", "Edit", new { pId = Model.Id }, new { @class= "btn btn-default" })
-
+@if (Model.PropertyStatusId == 1) // Available
+{
+    if (Model.LeaseTerms.Any())
+     {
+        <br/>
+         <div class="form-group">
+             <div class="col-md-8">
+                 @Html.LabelFor(m => m.LeaseTerms)
+             </div>
+             <div class="col-md-8">
+                 <ul>
+                 @foreach (var term in Model.LeaseTerms)
+                 {
+                     <li>@string.Format("{0:C2}", term.MonthlyRent) per month for @term.Duration months. <a href="@Url.Action("Details", "LeaseTerms", new { tId = term.LeaseTermId })">(@term.TotalApplications applications)</a></li>
+                 }
+                 </ul>
+             </div>
+         </div>
+    }
+    else
+    {
+        <br/>
+        <div class="form-group">
+            <div class="col-md-8">
+                <span>No lease information to display.</span>
+            </div>
+        </div>
+    }
+    <br/>
+    <a href='@Url.Action("Create", "LeaseTerms", new { pId = Model.Id })' class="btn btn-primary">Set Lease Terms</a>
+}
+@Html.ActionLink("Edit >>", "Edit", new { pId = Model.Id }, new { @class= "btn btn-primary" })

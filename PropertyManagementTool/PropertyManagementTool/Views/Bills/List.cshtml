@@ -1,0 +1,93 @@
+﻿@model PropertyManagementTool.Service.Models.BillsListModel
+@{
+    ViewBag.Title = "My Bills";
+}
+
+<br/>
+<h5>@ViewBag.Title</h5>
+<hr/>
+@Html.ActionLink("Add bills >>", "Create", "Bills", new { @class = "btn btn-primary" })
+<br />
+@if (Model.Bills.Any())
+{
+    <br />
+    <div class="row">
+        <div class="col-md-1"><b>Due Date</b></div>
+        <div class="col-md-1"><b>Amount</b></div>
+        <div class="col-md-2"><b>Responsible Party</b></div>
+        <div class="col-md-2"><b>Property</b></div>
+        <div class="col-md-2"><b>Tenant</b></div>
+        <div class="col-md-1"><b>Category</b></div>
+        <div class="col-md-1"><b>Status</b></div>
+    </div>
+    foreach (var bill in Model.Bills)
+    {
+        <div class="row">
+            <div class="col-md-1">@bill.DueDate.ToShortDateString()</div>
+            <div class="col-md-1">@($"{bill.Amount:C}"))</div>
+            <div class="col-md-2">@bill.ResponsiblePartyLabel</div>
+            <div class="col-md-2">@bill.PropertyAddress</div>
+            <div class="col-md-2">@bill.TenantFullName</div>
+            <div class="col-md-2">@bill.CategoryLabel</div>
+            <div class="col-md-1">@bill.BillStatusLabel</div>
+            <div class="col-md-1">@Html.ActionLink("More >>", "Details", "Bills", new { bId = bill.BillId }, null)</div>
+        </div>
+    }
+    <hr />
+    <div class="row">
+        <div class="page-div col-md-10">
+            <ul class="pagination">
+                @if (Model.Page > 1)
+                {
+                    var prevPage = Model.Page - 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Bills")?page=@prevPage&pageSize=@Model.PageSize' class="page-link active"><</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link"><</a>
+                    </li>
+                }
+                <li class="page-item active">
+                    <a href='#' class="page-link active">@Model.Page</a>
+                </li>
+                @if (Model.Page * Model.PageSize < Model.Total)
+                {
+                    var nextPage = Model.Page + 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Bills")?page=@nextPage&pageSize=@Model.PageSize' class="page-link">></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link">></a>
+                    </li>
+                }
+
+                @*<li class="page-item">
+                        <label>Page size:</label>&nbsp;@Html.TextBoxFor(m => m.PageSize, new { style = "width:30px", onchange = "PageSizeChanged();" })
+                    </li>*@
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <span style="font-style:italic">Displaying @Model.Bills.Count() out of @Model.Total.</span>
+        </div>
+    </div>
+
+    @section scripts
+    {
+        <script language="javascript">
+            function PageSizeChanged() {
+                window.location = '@Url.Action("List", "Bills")?page=1&pageSize=' + $('#PageSize').val();
+            }
+        </script>
+    }
+}
+else
+{
+    <br />
+    <span style="font-style:italic">No bills to display.</span>
+}

@@ -2,74 +2,93 @@
 @{
     ViewBag.Title = "Properties";
 }
-
-<h2>@ViewBag.Title</h2>
+<br/>
+<h5>@ViewBag.Title</h5>
+<hr />
+@Html.ActionLink("Add new property >>", "Create", "Properties", new { @class = "btn btn-primary" })
 <br />
-@Html.ActionLink("Add new property >>", "Create", "Properties", new { @class = "btn btn-default" })
 <br />
 @if (Model.Properties.Any())
 {
     foreach (var property in Model.Properties)
     {
-        <hr />
         <div class="row">
             <div class="col-md-2">
                 <img src="~/Images/no-image.jpg" width="140" />
             </div>
-            <div class="col-md-10">
-                <div class="col-md-4">
-                    <span style="font-weight: bold">@property.Address</span>
-                    <br><label>Size:</label>&nbsp;<span>@property.Size sqft</span>
-                    <br><label>Bedrooms:</label>&nbsp;<span>@property.Bedrooms</span>
-                    <br><label>Bathrooms:</label>&nbsp;<span>@property.Bathrooms</span>
-                </div>
-                <div class="col-md-4">
-                    <label>Status:</label>&nbsp;<span style="color: green;font-weight: bold">@property.PropertyStatus</span>
-                    <br />
-                    @if (property.Features.Any())
-                    {
-                        <label>Features:</label>
-                        <ul>
-                            @foreach (var feat in property.Features)
-                            {
-                                <li>@feat.Description</li>
-                            }
-                        </ul>
-                    }
-                    else
-                    {
-                        <span style="font-style: italic">No features specified for this property.</span>
-                    }
-                </div>
-                <div class="col-md-2">
-                    @Html.ActionLink("More >>", "Details", "Properties", new { pId = property.Id }, new { @class = "btn btn-default" })
-                </div>
+            <div class="col-md-4">
+                <span style="font-weight: bold">@property.Address</span>
+                <br><label>Size:</label>&nbsp;<span>@property.Size sqft</span>
+                <br><label>Bedrooms:</label>&nbsp;<span>@property.Bedrooms</span>
+                <br><label>Bathrooms:</label>&nbsp;<span>@property.Bathrooms</span>
+            </div>
+            <div class="col-md-4">
+                <label>Status:</label>&nbsp;<span style="color: green;font-weight: bold">@property.PropertyStatus</span>
+                <br />
+                @if (property.Features.Any())
+                {
+                    <label>Features:</label>
+                    <ul>
+                        @foreach (var feat in property.Features)
+                        {
+                            <li>@feat.Description</li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <span style="font-style: italic">No features specified for this property.</span>
+                }
+            </div>
+            <div class="col-md-2">
+                @Html.ActionLink("More >>", "Details", "Properties", new { pId = property.Id }, new { @class = "btn btn-default" })
             </div>
         </div>
+        <hr />
     }
-    <hr />
+    
     <div class="row">
-        <div class="col-md-4">
-            @if (Model.Page > 1)
-            {
-                var prevPage = Model.Page - 1;
-                <a href='@Url.Action("List", "Properties")?page=@prevPage&pageSize=@Model.PageSize'><</a>
-            }
-            <label>Page:</label>@Html.DisplayFor(m => m.Page)
-            @if (Model.Page * Model.PageSize < Model.Total)
-            {
-                var nextPage = Model.Page + 1;
-                <a href='@Url.Action("List", "Properties")?page=@nextPage&pageSize=@Model.PageSize'>></a>
-            }
+        <div class="page-div col-md-10">
+            <ul class="pagination">
+                @if (Model.Page > 1)
+                {
+                    var prevPage = Model.Page - 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Properties")?page=@prevPage&pageSize=@Model.PageSize' class="page-link active"><</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link"><</a>
+                    </li>
+                }
+                <li class="page-item active">
+                    <a href='#' class="page-link active">@Model.Page</a>
+                </li>
+                @if (Model.Page * Model.PageSize < Model.Total)
+                {
+                    var nextPage = Model.Page + 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Properties")?page=@nextPage&pageSize=@Model.PageSize' class="page-link">></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link">></a>
+                    </li>
+                }
+
+                @*<li class="page-item">
+                    <label>Page size:</label>&nbsp;@Html.TextBoxFor(m => m.PageSize, new { style = "width:30px", onchange = "PageSizeChanged();" })
+                </li>*@
+            </ul>
         </div>
-        <div class="col-md-4">
-            <label>Page size:</label>&nbsp;@Html.TextBoxFor(m => m.PageSize, new { style = "width:30px", onchange = "PageSizeChanged();" })
-        </div>
-        <div class="col-md-4">
-            <label>Total:</label>&nbsp;@Html.DisplayFor(m => m.Total)
+        <div class="col-md-2">
+            <span style="font-style:italic">Displaying @Model.Properties.Count() out of @Model.Total.</span>
         </div>
     </div>
-
     @section scripts
     {
         <script language="javascript">
@@ -81,6 +100,7 @@
 }
 else
 {
+    <br/>
     <span style="font-style:italic">No properties to display.</span>
 }
 

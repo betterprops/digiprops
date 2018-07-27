@@ -85,5 +85,127 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Leases">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.Lease">
+        <MappingFragment StoreEntitySet="Lease">
+          <ScalarProperty Name="LeaseStatusId" ColumnName="LeaseStatusId" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="MonthlyRent" ColumnName="MonthlyRent" />
+          <ScalarProperty Name="InitialDepositDescription" ColumnName="InitialDepositDescription" />
+          <ScalarProperty Name="InitialDeposit" ColumnName="InitialDeposit" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+          <ScalarProperty Name="LeaseId" ColumnName="LeaseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tenants">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.Tenant">
+        <MappingFragment StoreEntitySet="Tenant">
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaseTerms">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.LeaseTerm">
+        <MappingFragment StoreEntitySet="LeaseTerms">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MonthlyRent" ColumnName="MonthlyRent" />
+          <ScalarProperty Name="Duration" ColumnName="Duration" />
+          <ScalarProperty Name="LeaseTermId" ColumnName="LeaseTermId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaseApplications">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.LeaseApplication">
+        <MappingFragment StoreEntitySet="LeaseApplication">
+          <ScalarProperty Name="LeaseApplicationStatusId" ColumnName="LeaseApplicationStatusId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+          <ScalarProperty Name="LeaseTermsId" ColumnName="LeaseTermsId" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="LeaseApplicationId" ColumnName="LeaseApplicationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaseApplicationStatus">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.LeaseApplicationStatu">
+        <MappingFragment StoreEntitySet="LeaseApplicationStatus">
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="LeaseApplicationStatusId" ColumnName="LeaseApplicationStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaseStatus">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.LeaseStatu">
+        <MappingFragment StoreEntitySet="LeaseStatus">
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="LeaseStatusId" ColumnName="LeaseStatusId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transactions">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.Transaction">
+        <MappingFragment StoreEntitySet="Transaction">
+          <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="BillId" ColumnName="BillId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="PropertyOwnerId" ColumnName="PropertyOwnerId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpenseIncomeCategories">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.ExpenseIncomeCategory">
+        <MappingFragment StoreEntitySet="ExpenseIncomeCategories">
+          <ScalarProperty Name="IsTaxDeductible" ColumnName="IsTaxDeductible" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bills">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.Bill">
+        <MappingFragment StoreEntitySet="Bill">
+          <ScalarProperty Name="BillStatusId" ColumnName="BillStatusId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="TenantId" ColumnName="TenantId" />
+          <ScalarProperty Name="PropertyId" ColumnName="PropertyId" />
+          <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+          <ScalarProperty Name="ResposiblePartyId" ColumnName="ResposiblePartyId" />
+          <ScalarProperty Name="PropertyOwnerId" ColumnName="PropertyOwnerId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="BillId" ColumnName="BillId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BillStatus">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.BillStatu">
+        <MappingFragment StoreEntitySet="BillStatus">
+          <ScalarProperty Name="Label" ColumnName="Label" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResposibleParties">
+      <EntityTypeMapping TypeName="PropertyManagementDbModel.ResposibleParty">
+        <MappingFragment StoreEntitySet="ResposibleParty">
+          <ScalarProperty Name="ResponsibleParty" ColumnName="ResponsibleParty" />
+          <ScalarProperty Name="ResposiblePartyId" ColumnName="ResposiblePartyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

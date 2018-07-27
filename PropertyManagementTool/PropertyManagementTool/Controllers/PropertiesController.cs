@@ -105,7 +105,7 @@ namespace PropertyManagementTool.Controllers
                 var features = new List<int>();
                 if (model.SelectedFeatures != null && model.SelectedFeatures.Any())
                     features = model.SelectedFeatures.Select(f => Convert.ToInt32(f)).ToList();
-                this.Service.EditProperty((((OwnerModel)Session["SelectedAccount"]).Id), serviceModel, features);
+                this.Service.EditProperty((((OwnerModel)Session["SelectedAccount"]).Id), serviceModel, features, User.Identity.Name);
                 return RedirectToAction("Details", new { pId = model.Id });
             }
             else

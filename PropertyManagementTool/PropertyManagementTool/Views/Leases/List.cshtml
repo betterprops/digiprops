@@ -1,0 +1,84 @@
+﻿@model PropertyManagementTool.Service.Models.LeasesListModel
+@{
+    ViewBag.Title = "Leases";
+}
+<br/>
+<h5>@ViewBag.Title</h5>
+<hr/>
+@if (Model.Leases.Any())
+{
+    <div class="row">
+        <div class="col-md-2"><b>Property</b></div>
+        <div class="col-md-2"><b>Tenant</b></div>
+        <div class="col-md-2"><b>Start Date</b></div>
+        <div class="col-md-2"><b>End Date</b></div>
+        <div class="col-md-2"><b>Monthly Rent</b></div>
+    </div>
+    foreach (var lease in Model.Leases)
+    {
+        <div class="row">
+            <div class="col-md-2">@lease.PropertyAddress</div>
+            <div class="col-md-2">@lease.TenantFullName</div>
+            <div class="col-md-2">@lease.StartDate</div>
+            <div class="col-md-2">@lease.EndDate</div>
+            <div class="col-md-2">@($"{lease.MonthlyRent:C}")</div>
+            <div class="col-md-2">@Html.ActionLink("More >>", "Details", "Leases", new { lId = lease.LeaseId }, null)</div>
+        </div>
+    }
+    <hr />
+    <div class="row">
+        <div class="page-div col-md-10">
+            <ul class="pagination">
+                @if (Model.Page > 1)
+                {
+                    var prevPage = Model.Page - 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Leases")?page=@prevPage&pageSize=@Model.PageSize' class="page-link active"><</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link"><</a>
+                    </li>
+                }
+                <li class="page-item active">
+                    <a href='#' class="page-link active">@Model.Page</a>
+                </li>
+                @if (Model.Page * Model.PageSize < Model.Total)
+                {
+                    var nextPage = Model.Page + 1;
+                    <li class="page-item">
+                        <a href='@Url.Action("List", "Leases")?page=@nextPage&pageSize=@Model.PageSize' class="page-link">></a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a href='#' class="page-link">></a>
+                    </li>
+                }
+
+                @*<li class="page-item">
+                    <label>Page size:</label>&nbsp;@Html.TextBoxFor(m => m.PageSize, new { style = "width:30px", onchange = "PageSizeChanged();" })
+                </li>*@
+            </ul>
+        </div>
+        <div class="col-md-2">
+            <span style="font-style:italic">Displaying @Model.Leases.Count() out of @Model.Total.</span>
+        </div>
+    </div>
+
+    @section scripts
+    {
+        <script language="javascript">
+            function PageSizeChanged() {
+                window.location = '@Url.Action("List", "Leases")?page=1&pageSize=' + $('#PageSize').val();
+            }
+        </script>
+    }
+}
+else
+{
+    <span style="font-style:italic">No leases to display.</span>
+}

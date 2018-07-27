@@ -18,6 +18,11 @@
     <Property Name="OwnerId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Owner" Relationship="PropertyManagementDbModel.FK_Property_Owner" FromRole="Property" ToRole="Owner" />
     <NavigationProperty Name="Owners" Relationship="PropertyManagementDbModel.PropertyOwner" FromRole="Property" ToRole="Owner" />
+    <NavigationProperty Name="Leases" Relationship="PropertyManagementDbModel.FK_Lease_Property" FromRole="Property" ToRole="Lease" />
+    <NavigationProperty Name="LeaseTerms" Relationship="PropertyManagementDbModel.FK_LeaseTerms_Properties" FromRole="Property" ToRole="LeaseTerm" />
+    <NavigationProperty Name="LeaseApplications" Relationship="PropertyManagementDbModel.FK_LeaseApplication_Property" FromRole="Property" ToRole="LeaseApplication" />
+    <NavigationProperty Name="Transactions" Relationship="PropertyManagementDbModel.FK_Transaction_Property" FromRole="Property" ToRole="Transaction" />
+    <NavigationProperty Name="Bills" Relationship="PropertyManagementDbModel.FK_Bill_Property" FromRole="Property" ToRole="Bill" />
   </EntityType>
   <Association Name="FK_Property_Property">
     <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
@@ -66,6 +71,85 @@
       <End Role="AspNetUser" EntitySet="AspNetUsers" />
       <End Role="Owner" EntitySet="Owners" />
     </AssociationSet>
+    <EntitySet Name="Leases" EntityType="PropertyManagementDbModel.Lease" />
+    <AssociationSet Name="FK_Lease_Property" Association="PropertyManagementDbModel.FK_Lease_Property">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="Lease" EntitySet="Leases" />
+    </AssociationSet>
+    <EntitySet Name="Tenants" EntityType="PropertyManagementDbModel.Tenant" />
+    <AssociationSet Name="FK_Lease_Tenant" Association="PropertyManagementDbModel.FK_Lease_Tenant">
+      <End Role="Tenant" EntitySet="Tenants" />
+      <End Role="Lease" EntitySet="Leases" />
+    </AssociationSet>
+    <EntitySet Name="LeaseTerms" EntityType="PropertyManagementDbModel.LeaseTerm" />
+    <AssociationSet Name="FK_LeaseTerms_Properties" Association="PropertyManagementDbModel.FK_LeaseTerms_Properties">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="LeaseTerm" EntitySet="LeaseTerms" />
+    </AssociationSet>
+    <EntitySet Name="LeaseApplications" EntityType="PropertyManagementDbModel.LeaseApplication" />
+    <AssociationSet Name="FK_LeaseApplication_LeaseTerms" Association="PropertyManagementDbModel.FK_LeaseApplication_LeaseTerms">
+      <End Role="LeaseTerm" EntitySet="LeaseTerms" />
+      <End Role="LeaseApplication" EntitySet="LeaseApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LeaseApplication_Property" Association="PropertyManagementDbModel.FK_LeaseApplication_Property">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="LeaseApplication" EntitySet="LeaseApplications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LeaseApplication_Tenant" Association="PropertyManagementDbModel.FK_LeaseApplication_Tenant">
+      <End Role="Tenant" EntitySet="Tenants" />
+      <End Role="LeaseApplication" EntitySet="LeaseApplications" />
+    </AssociationSet>
+    <EntitySet Name="LeaseApplicationStatus" EntityType="PropertyManagementDbModel.LeaseApplicationStatu" />
+    <EntitySet Name="LeaseStatus" EntityType="PropertyManagementDbModel.LeaseStatu" />
+    <AssociationSet Name="FK_Lease_LeaseStatus" Association="PropertyManagementDbModel.FK_Lease_LeaseStatus">
+      <End Role="LeaseStatu" EntitySet="LeaseStatus" />
+      <End Role="Lease" EntitySet="Leases" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LeaseApplication_LeaseApplicationStatus" Association="PropertyManagementDbModel.FK_LeaseApplication_LeaseApplicationStatus">
+      <End Role="LeaseApplicationStatu" EntitySet="LeaseApplicationStatus" />
+      <End Role="LeaseApplication" EntitySet="LeaseApplications" />
+    </AssociationSet>
+    <EntitySet Name="Transactions" EntityType="PropertyManagementDbModel.Transaction" />
+    <AssociationSet Name="FK_Transaction_Owner" Association="PropertyManagementDbModel.FK_Transaction_Owner">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Property" Association="PropertyManagementDbModel.FK_Transaction_Property">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="ExpenseIncomeCategories" EntityType="PropertyManagementDbModel.ExpenseIncomeCategory" />
+    <AssociationSet Name="FK_Transaction_ExpenseIncomeCategories" Association="PropertyManagementDbModel.FK_Transaction_ExpenseIncomeCategories">
+      <End Role="ExpenseIncomeCategory" EntitySet="ExpenseIncomeCategories" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Bills" EntityType="PropertyManagementDbModel.Bill" />
+    <EntitySet Name="BillStatus" EntityType="PropertyManagementDbModel.BillStatu" />
+    <EntitySet Name="ResposibleParties" EntityType="PropertyManagementDbModel.ResposibleParty" />
+    <AssociationSet Name="FK_Bill_BillStatus" Association="PropertyManagementDbModel.FK_Bill_BillStatus">
+      <End Role="BillStatu" EntitySet="BillStatus" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Owner" Association="PropertyManagementDbModel.FK_Bill_Owner">
+      <End Role="Owner" EntitySet="Owners" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Property" Association="PropertyManagementDbModel.FK_Bill_Property">
+      <End Role="Property" EntitySet="Properties" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_ResposibleParty" Association="PropertyManagementDbModel.FK_Bill_ResposibleParty">
+      <End Role="ResposibleParty" EntitySet="ResposibleParties" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Tenant" Association="PropertyManagementDbModel.FK_Bill_Tenant">
+      <End Role="Tenant" EntitySet="Tenants" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_BillCategory" Association="PropertyManagementDbModel.FK_Bill_BillCategory">
+      <End Role="ExpenseIncomeCategory" EntitySet="ExpenseIncomeCategories" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Feature">
     <Key>
@@ -112,6 +196,8 @@
     <NavigationProperty Name="OwnerType" Relationship="PropertyManagementDbModel.FK_PropertyOwner_PropertyOwnerType" FromRole="Owner" ToRole="OwnerType" />
     <NavigationProperty Name="Properties1" Relationship="PropertyManagementDbModel.PropertyOwner" FromRole="Owner" ToRole="Property" />
     <NavigationProperty Name="AspNetUser" Relationship="PropertyManagementDbModel.FK_Owner_AspNetUsers" FromRole="Owner" ToRole="AspNetUser" />
+    <NavigationProperty Name="Transactions" Relationship="PropertyManagementDbModel.FK_Transaction_Owner" FromRole="Owner" ToRole="Transaction" />
+    <NavigationProperty Name="Bills" Relationship="PropertyManagementDbModel.FK_Bill_Owner" FromRole="Owner" ToRole="Bill" />
   </EntityType>
   <EntityType Name="OwnerType">
     <Key>
@@ -176,6 +262,348 @@
       </Principal>
       <Dependent Role="Owner">
         <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Lease">
+    <Key>
+      <PropertyRef Name="LeaseId" />
+    </Key>
+    <Property Name="LeaseId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PropertyId" Type="Int32" Nullable="false" />
+    <Property Name="TenantId" Type="Int32" Nullable="false" />
+    <Property Name="Duration" Type="Double" Nullable="false" />
+    <Property Name="InitialDeposit" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="InitialDepositDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MonthlyRent" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Property" Relationship="PropertyManagementDbModel.FK_Lease_Property" FromRole="Lease" ToRole="Property" />
+    <NavigationProperty Name="Tenant" Relationship="PropertyManagementDbModel.FK_Lease_Tenant" FromRole="Lease" ToRole="Tenant" />
+    <Property Name="LeaseStatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LeaseStatu" Relationship="PropertyManagementDbModel.FK_Lease_LeaseStatus" FromRole="Lease" ToRole="LeaseStatu" />
+  </EntityType>
+  <Association Name="FK_Lease_Property">
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Lease" Role="Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Tenant">
+    <Key>
+      <PropertyRef Name="TenantId" />
+    </Key>
+    <Property Name="TenantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Precision="3" Nullable="false" />
+    <NavigationProperty Name="Leases" Relationship="PropertyManagementDbModel.FK_Lease_Tenant" FromRole="Tenant" ToRole="Lease" />
+    <NavigationProperty Name="LeaseApplications" Relationship="PropertyManagementDbModel.FK_LeaseApplication_Tenant" FromRole="Tenant" ToRole="LeaseApplication" />
+    <NavigationProperty Name="Bills" Relationship="PropertyManagementDbModel.FK_Bill_Tenant" FromRole="Tenant" ToRole="Bill" />
+  </EntityType>
+  <Association Name="FK_Lease_Tenant">
+    <End Type="PropertyManagementDbModel.Tenant" Role="Tenant" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Lease" Role="Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tenant">
+        <PropertyRef Name="TenantId" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LeaseTerm">
+    <Key>
+      <PropertyRef Name="LeaseTermId" />
+    </Key>
+    <Property Name="LeaseTermId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Duration" Type="Double" Nullable="false" />
+    <Property Name="MonthlyRent" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PropertyId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Property" Relationship="PropertyManagementDbModel.FK_LeaseTerms_Properties" FromRole="LeaseTerm" ToRole="Property" />
+    <NavigationProperty Name="LeaseApplications" Relationship="PropertyManagementDbModel.FK_LeaseApplication_LeaseTerms" FromRole="LeaseTerm" ToRole="LeaseApplication" />
+  </EntityType>
+  <Association Name="FK_LeaseTerms_Properties">
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.LeaseTerm" Role="LeaseTerm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LeaseTerm">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LeaseApplication">
+    <Key>
+      <PropertyRef Name="LeaseApplicationId" />
+    </Key>
+    <Property Name="LeaseApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenantId" Type="Int32" Nullable="false" />
+    <Property Name="LeaseTermsId" Type="Int32" Nullable="false" />
+    <Property Name="PropertyId" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LeaseApplicationStatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LeaseTerm" Relationship="PropertyManagementDbModel.FK_LeaseApplication_LeaseTerms" FromRole="LeaseApplication" ToRole="LeaseTerm" />
+    <NavigationProperty Name="Property" Relationship="PropertyManagementDbModel.FK_LeaseApplication_Property" FromRole="LeaseApplication" ToRole="Property" />
+    <NavigationProperty Name="Tenant" Relationship="PropertyManagementDbModel.FK_LeaseApplication_Tenant" FromRole="LeaseApplication" ToRole="Tenant" />
+    <NavigationProperty Name="LeaseApplicationStatu" Relationship="PropertyManagementDbModel.FK_LeaseApplication_LeaseApplicationStatus" FromRole="LeaseApplication" ToRole="LeaseApplicationStatu" />
+  </EntityType>
+  <Association Name="FK_LeaseApplication_LeaseTerms">
+    <End Type="PropertyManagementDbModel.LeaseTerm" Role="LeaseTerm" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.LeaseApplication" Role="LeaseApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaseTerm">
+        <PropertyRef Name="LeaseTermId" />
+      </Principal>
+      <Dependent Role="LeaseApplication">
+        <PropertyRef Name="LeaseTermsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeaseApplication_Property">
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.LeaseApplication" Role="LeaseApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="LeaseApplication">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeaseApplication_Tenant">
+    <End Type="PropertyManagementDbModel.Tenant" Role="Tenant" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.LeaseApplication" Role="LeaseApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tenant">
+        <PropertyRef Name="TenantId" />
+      </Principal>
+      <Dependent Role="LeaseApplication">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="LeaseApplicationStatu">
+    <Key>
+      <PropertyRef Name="LeaseApplicationStatusId" />
+    </Key>
+    <Property Name="LeaseApplicationStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LeaseApplications" Relationship="PropertyManagementDbModel.FK_LeaseApplication_LeaseApplicationStatus" FromRole="LeaseApplicationStatu" ToRole="LeaseApplication" />
+  </EntityType>
+  <EntityType Name="LeaseStatu">
+    <Key>
+      <PropertyRef Name="LeaseStatusId" />
+    </Key>
+    <Property Name="LeaseStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Leases" Relationship="PropertyManagementDbModel.FK_Lease_LeaseStatus" FromRole="LeaseStatu" ToRole="Lease" />
+  </EntityType>
+  <Association Name="FK_Lease_LeaseStatus">
+    <End Type="PropertyManagementDbModel.LeaseStatu" Role="LeaseStatu" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Lease" Role="Lease" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaseStatu">
+        <PropertyRef Name="LeaseStatusId" />
+      </Principal>
+      <Dependent Role="Lease">
+        <PropertyRef Name="LeaseStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeaseApplication_LeaseApplicationStatus">
+    <End Type="PropertyManagementDbModel.LeaseApplicationStatu" Role="LeaseApplicationStatu" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.LeaseApplication" Role="LeaseApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaseApplicationStatu">
+        <PropertyRef Name="LeaseApplicationStatusId" />
+      </Principal>
+      <Dependent Role="LeaseApplication">
+        <PropertyRef Name="LeaseApplicationStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TransactionId" />
+    </Key>
+    <Property Name="TransactionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="PropertyOwnerId" Type="Int32" Nullable="false" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="BillId" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="PropertyId" Type="Int32" />
+    <NavigationProperty Name="Owner" Relationship="PropertyManagementDbModel.FK_Transaction_Owner" FromRole="Transaction" ToRole="Owner" />
+    <NavigationProperty Name="Property" Relationship="PropertyManagementDbModel.FK_Transaction_Property" FromRole="Transaction" ToRole="Property" />
+    <NavigationProperty Name="ExpenseIncomeCategory" Relationship="PropertyManagementDbModel.FK_Transaction_ExpenseIncomeCategories" FromRole="Transaction" ToRole="ExpenseIncomeCategory" />
+  </EntityType>
+  <Association Name="FK_Transaction_Owner">
+    <End Type="PropertyManagementDbModel.Owner" Role="Owner" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="PropertyOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Property">
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="0..1" />
+    <End Type="PropertyManagementDbModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ExpenseIncomeCategory">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsTaxDeductible" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Transactions" Relationship="PropertyManagementDbModel.FK_Transaction_ExpenseIncomeCategories" FromRole="ExpenseIncomeCategory" ToRole="Transaction" />
+    <NavigationProperty Name="Bills" Relationship="PropertyManagementDbModel.FK_Bill_BillCategory" FromRole="ExpenseIncomeCategory" ToRole="Bill" />
+  </EntityType>
+  <Association Name="FK_Transaction_ExpenseIncomeCategories">
+    <End Type="PropertyManagementDbModel.ExpenseIncomeCategory" Role="ExpenseIncomeCategory" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpenseIncomeCategory">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="BillId" />
+    </Key>
+    <Property Name="BillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="PropertyOwnerId" Type="Int32" Nullable="false" />
+    <Property Name="ResposiblePartyId" Type="Int32" Nullable="false" />
+    <Property Name="TaskId" Type="Int32" />
+    <Property Name="PropertyId" Type="Int32" />
+    <Property Name="TenantId" Type="Int32" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="BillStatusId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BillStatu" Relationship="PropertyManagementDbModel.FK_Bill_BillStatus" FromRole="Bill" ToRole="BillStatu" />
+    <NavigationProperty Name="Owner" Relationship="PropertyManagementDbModel.FK_Bill_Owner" FromRole="Bill" ToRole="Owner" />
+    <NavigationProperty Name="Property" Relationship="PropertyManagementDbModel.FK_Bill_Property" FromRole="Bill" ToRole="Property" />
+    <NavigationProperty Name="ResposibleParty" Relationship="PropertyManagementDbModel.FK_Bill_ResposibleParty" FromRole="Bill" ToRole="ResposibleParty" />
+    <NavigationProperty Name="Tenant" Relationship="PropertyManagementDbModel.FK_Bill_Tenant" FromRole="Bill" ToRole="Tenant" />
+    <NavigationProperty Name="ExpenseIncomeCategory" Relationship="PropertyManagementDbModel.FK_Bill_BillCategory" FromRole="Bill" ToRole="ExpenseIncomeCategory" />
+  </EntityType>
+  <EntityType Name="BillStatu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Label" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Bills" Relationship="PropertyManagementDbModel.FK_Bill_BillStatus" FromRole="BillStatu" ToRole="Bill" />
+  </EntityType>
+  <EntityType Name="ResposibleParty">
+    <Key>
+      <PropertyRef Name="ResposiblePartyId" />
+    </Key>
+    <Property Name="ResposiblePartyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResponsibleParty" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Bills" Relationship="PropertyManagementDbModel.FK_Bill_ResposibleParty" FromRole="ResposibleParty" ToRole="Bill" />
+  </EntityType>
+  <Association Name="FK_Bill_BillStatus">
+    <End Type="PropertyManagementDbModel.BillStatu" Role="BillStatu" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BillStatu">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="BillStatusId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Owner">
+    <End Type="PropertyManagementDbModel.Owner" Role="Owner" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Owner">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="PropertyOwnerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Property">
+    <End Type="PropertyManagementDbModel.Property" Role="Property" Multiplicity="0..1" />
+    <End Type="PropertyManagementDbModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Property">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="PropertyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_ResposibleParty">
+    <End Type="PropertyManagementDbModel.ResposibleParty" Role="ResposibleParty" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResposibleParty">
+        <PropertyRef Name="ResposiblePartyId" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="ResposiblePartyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Tenant">
+    <End Type="PropertyManagementDbModel.Tenant" Role="Tenant" Multiplicity="0..1" />
+    <End Type="PropertyManagementDbModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tenant">
+        <PropertyRef Name="TenantId" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="TenantId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_BillCategory">
+    <End Type="PropertyManagementDbModel.ExpenseIncomeCategory" Role="ExpenseIncomeCategory" Multiplicity="1" />
+    <End Type="PropertyManagementDbModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpenseIncomeCategory">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="CategoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

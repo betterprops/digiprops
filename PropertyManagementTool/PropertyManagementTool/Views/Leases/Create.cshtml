@@ -1,0 +1,109 @@
+﻿@model PropertyManagementTool.Models.LeaseCreateViewModel
+@{
+    ViewBag.Title = "New Lease";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.LeaseApplicationId)
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.PropertyAddress, new { @class = "control-label"})
+        </div>
+        <div class="col-md-4">
+            @Html.HiddenFor(m => m.PropertyId)
+            @Html.TextBoxFor(m => m.PropertyAddress, new { @class = "form-control", @readonly = "true" })
+            @Html.ValidationMessageFor(m => m.PropertyId)
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.TenantFullName, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.TenantFullName, new { @class = "form-control", @readonly="true" })
+            @Html.HiddenFor(m => m.TenantId)
+            @Html.ValidationMessageFor(m => m.TenantFullName)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.Duration, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.Duration, new { @class="form-control" })
+            @Html.ValidationMessageFor(m => m.Duration)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.MonthlyRent, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.MonthlyRent, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.MonthlyRent)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.StartDate, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.StartDate, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.StartDate)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.EndDate, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.EndDate)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.InitialDeposit, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.InitialDeposit, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.InitialDeposit)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.InitialDepositDescription, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.TextAreaFor(m => m.InitialDepositDescription, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.InitialDepositDescription)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.LeaseStatusId, new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            @Html.DropDownListFor(m => m.LeaseStatusId, (SelectList)ViewBag.LeaseStatusList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.LeaseStatusId)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <input type="submit" value="Save" class="btn btn-default"/>
+    </div>
+}

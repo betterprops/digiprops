@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace PropertyManagementTool.Controllers
 {
+    [AllowAnonymous]
     public class ErrorsController : Controller
     {
         // GET: Errors

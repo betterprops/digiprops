@@ -57,12 +57,23 @@
     <Compile Include="AutoMapperServiceProfile.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IPropertyManagementService.cs" />
+    <Compile Include="Models\BillModel.cs" />
+    <Compile Include="Models\BillsListModel.cs" />
     <Compile Include="Models\FeatureModel.cs" />
+    <Compile Include="Models\IdLabelPairModel.cs" />
+    <Compile Include="Models\LeaseApplicationModel.cs" />
+    <Compile Include="Models\LeaseModel.cs" />
+    <Compile Include="Models\LeaseStatus.cs" />
+    <Compile Include="Models\LeaseTermModel.cs" />
     <Compile Include="Models\OwnerModel.cs" />
     <Compile Include="Models\OwnerTypeModel.cs" />
+    <Compile Include="Models\LeasesListModel.cs" />
+    <Compile Include="Models\TransactionsListModel.cs" />
     <Compile Include="Models\PropertiesListModel.cs" />
     <Compile Include="Models\PropertyModel.cs" />
     <Compile Include="Models\PropertyStatusModel.cs" />
+    <Compile Include="Models\TenantModel.cs" />
+    <Compile Include="Models\TransactionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyManagementService.cs" />
   </ItemGroup>

@@ -1,0 +1,89 @@
+﻿@model PropertyManagementTool.Models.LeaseTermViewModel
+@{
+    ViewBag.Title = "Lease Terms";
+}
+
+<h2>@ViewBag.Title</h2>
+<br/>
+
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.PropertyLabel, new { @class = "control-label" })
+    </div>
+    <div class="col-md-6">
+        <a href='@Url.Action("Details", "Properties", new { pId = Model.PropertyId })'>@Html.DisplayFor(m => m.PropertyLabel, new { @class = "form-control", @readonly = "true" })</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.MonthlyRent, new { @class = "control-label" })
+    </div>
+    <div class="col-md-6">
+        @string.Format("{0:C2}", Model.MonthlyRent)
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Duration, new { @class = "control-label" })
+    </div>
+    <div class="col-md-6">
+        @Html.DisplayFor(m => m.Duration, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+    </div>
+    <div class="col-md-6">
+        @Html.DisplayFor(m => m.Description, new { @class = "form-control", @readonly = "true" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.IsActive, new { @class = "control-label" })
+    </div>
+    <div class="col-md-6">
+        @if (Model.IsActive)
+        {
+            <span>Yes</span>  @Html.ActionLink("Deactivate", "SetAsInactive", new { tId = Model.LeaseTermId })
+        }
+        else
+        {
+            <span>No</span>
+        }
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-md-2">
+        @Html.LabelFor(m => m.LeaseApplications, new { @class = "control-label" })
+    </div>
+</div>
+<br/>
+@if (Model.LeaseApplications.Any())
+{
+    <div class="row">
+        <div class="col-md-3"><b>Date Created</b></div>
+        <div class="col-md-3"><b>Tenant</b></div>
+        <div class="col-md-3"><b>Status</b></div>
+    </div>
+    foreach (var app in Model.LeaseApplications)
+    {
+        <div class="row">
+            <div class="col-md-3">@app.DateCreated</div>
+            <div class="col-md-3">@app.TenantFullName</div>
+            <div class="col-md-3">@app.LeaseApplicationStatusLabel</div>
+            <div class="col-md-3"><a href='@Url.Action("Details", "LeaseApplications", new { aId = app.LeaseApplicationId })'>Review</a></div>
+        </div>
+    }
+}
+else
+{
+    <div class="row">
+        <div class="col-md-6">
+            <span>No applications to display.</span>
+        </div>
+    </div>
+}
+<br/>
+<a href="@Url.Action("Create", "LeaseApplications", new { tId = @Model.LeaseTermId })" class="btn btn-default">Add Application</a>

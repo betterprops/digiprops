@@ -19,5 +19,11 @@ namespace PropertyManagementTool.Service.Models
         public Nullable<int> ParentPropertyId { get; set; }
 
         public ICollection<FeatureModel> Features { get; set; }
+
+        public IEnumerable<LeaseTermModel> LeaseTerms { get; set; }
+
+        public IEnumerable<LeaseModel> Leases { get; set; }
+
+        public int ActiveLeaseId { get; set; }
     }
 }

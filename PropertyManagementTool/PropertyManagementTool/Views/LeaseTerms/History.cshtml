@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PropertyManagementTool.Models.LeaseTermViewModel>
+@{
+    ViewBag.Title = "Lease Terms History";
+}
+
+<h2>@ViewBag.Title</h2>
+<br/>
+
+@if (Model != null && Model.Any())
+{
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label">@Model.First().PropertyLabel</label>
+        </div>
+    </div>
+
+    foreach (var term in Model)
+    {
+        
+    }
+}

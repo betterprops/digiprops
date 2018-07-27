@@ -1,0 +1,5 @@
+IF COL_LENGTH('LeaseTerms', 'IsActive') IS NULL
+BEGIN
+    ALTER TABLE LeaseTerms
+    ADD IsActive BIT NOT NULL DEFAULT(1)
+END

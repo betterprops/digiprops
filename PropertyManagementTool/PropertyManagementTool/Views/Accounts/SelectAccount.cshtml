@@ -2,31 +2,26 @@
 @{
     ViewBag.Title = "My Accounts";
 }
-
-<h2>@ViewBag.Title</h2>
-
+<br/>
+<h5>@ViewBag.Title</h5>
+<hr/>
 @using (Html.BeginForm())
 {
     @Html.ValidationSummary(true)
     @Html.AntiForgeryToken()
-
-    <div class="row">
-        <div class="col-md-12">
-            <h4>Select the account you want to work with. If you do not have an account, you must create one.</h4>
+    <fieldset>
+        <div class="form-group">
+            <label class="control-label">Select the account you want to work with. If you do not have an account, you must create one.</label>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            @Html.DropDownListFor(m => m.Id, (SelectList)ViewBag.OwnersList, new { @class = "form-control" })
+        <div class="form-group">
+            @Html.DropDownListFor(m => m.Id, (SelectList) ViewBag.OwnersList, new {@class = "form-control"})
             @Html.ValidationMessageFor(m => m.Id)
         </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-12">
-            <input type="submit" name="command" class="btn btn-default" value="Select" />
-            <input type="submit" name="command" class="btn btn-default" value="Edit" />
-            <input type="submit" name="command" class="btn btn-default" value="Create" />
+        <br/>
+        <div class="form-group">
+            <input type="submit" name="command" class="btn btn-primary" value="Select"/>
+            <input type="submit" name="command" class="btn btn-primary" value="Edit"/>
+            <input type="submit" name="command" class="btn btn-primary" value="Create"/>
         </div>
-    </div>
+    </fieldset>
 }

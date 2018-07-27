@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using PropertyManagementTool.Models;
 
 namespace PropertyManagementTool.App_Start
 {
@@ -14,6 +11,11 @@ namespace PropertyManagementTool.App_Start
             CreateMap<Service.Models.PropertyModel, Models.PropertyEditViewModel>();
             CreateMap<Service.Models.OwnerModel, Models.OwnerViewModel>();
             CreateMap<Service.Models.OwnerModel, Models.OwnerEditViewModel>();
+            CreateMap<Service.Models.LeaseTermModelExtended, Models.LeaseTermViewModel>();
+            CreateMap<Service.Models.LeaseTermModel, Models.LeaseTermViewModel>();
+            CreateMap<Service.Models.LeaseModel, Models.LeaseViewModel>();
+            CreateMap<LeaseCreateViewModel, Service.Models.LeaseModel>();
+            CreateMap<TransactionViewModel, Service.Models.TransactionModel>();
         }
     }
 }

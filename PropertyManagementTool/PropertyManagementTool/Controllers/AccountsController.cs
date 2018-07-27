@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PropertyManagementTool.Controllers
 {
+    [Authorize]
     public class AccountsController : Controller
     {
         private IPropertyManagementService Service { get; set; }
@@ -21,7 +22,7 @@ namespace PropertyManagementTool.Controllers
         // GET: Owners
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("SelectAccount");
         }
 
         private void OnSelectAccount()

@@ -11,6 +11,9 @@ namespace PropertyManagementTool
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
+                        "~/Scripts/umd/popper.min.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
@@ -20,12 +23,22 @@ namespace PropertyManagementTool
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                    "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                    "~/Content/bootstrap-cerulean.css",
+                    "~/Content/Site.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/jqplotcss").Include(
+                    "~/Scripts/jqPlot/jquery.jqplot.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqplotjs").Include(
+                "~/Scripts/jqPlot/jquery.jqplot.js",
+                "~/Scripts/jqPlot/plugins/jqplot.pieRenderer.js",
+                "~/Scripts/jqPlot/plugins/jqplot.dateAxisRenderer.js",
+                "~/Scripts/jqPlot/plugins/jqplot.highlighter.js"
+            ));
         }
     }
 }

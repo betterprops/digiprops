@@ -1,0 +1,10 @@
+IF COL_LENGTH('Transaction', 'PropertyId') IS NULL
+BEGIN
+    ALTER TABLE [Transaction]
+    ADD PropertyId INT NULL
+END
+
+IF NOT EXISTS (SELECT TOP 1 1 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS WHERE TABLE_NAME = 'Transaction' AND CONSTRAINT_NAME = 'FK_Transaction_Property')
+BEGIN
+	ALTER TABLE [dbo].[Transaction] WITH CHECK ADD CONSTRAINT [FK_Transaction_Property] FOREIGN KEY([PropertyId]) REFERENCES [dbo].[Property] ([Id])
+END

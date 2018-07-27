@@ -2,59 +2,62 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title - Better Props</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-
+    @Styles.Render("~/bundles/jqplotcss")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Better Props LLC", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            @Html.ActionLink("Better Props", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse" id="navbarResponsive">
+                <ul class="navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Switch Account", "SelectAccount", "Accounts")</li>
-                        <li>@Html.ActionLink("Dashboard", "Index", "Dashboard")</li>
-                        <li>@Html.ActionLink("Properties", "List", "Properties")</li>
+                        <li class="nav-item">@Html.ActionLink("Dashboard", "Index", "Dashboard", null, new { @class = "nav-link" })</li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Management</a>
+                            <div class="dropdown-menu" aria-labelledby="management">
+                                @Html.ActionLink("Properties", "List", "Properties", null, new {@class = "dropdown-item" })
+                                @Html.ActionLink("Leases", "List", "Leases", null, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Finance</a>
+                            <div class="dropdown-menu" aria-labelledby="finance">
+                                @Html.ActionLink("Transactions", "List", "Transactions", null, new { @class = "dropdown-item" })
+                            </div>
+                        </li>
                     }
-                    else
-                    {
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    }
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Help</a>
+                        <div class="dropdown-menu" aria-labelledby="help">
+                            @Html.ActionLink("About", "About", "Home", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "dropdown-item" })
+                        </div>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @if (Request.IsAuthenticated && Session != null && Session["SelectedAccount"] != null)
-        {
-            <div class="row" style="float:right">
-                <br />
-                <span>Selected account: @(((PropertyManagementTool.Service.Models.OwnerModel)Session["SelectedAccount"]).Name)</span>
-            </div>
-        }
+    <div class="container">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Better Props Property Management Tool</p>
+            <p>&copy; @DateTime.Now.Year - Better Props LLC</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/popper")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jqplotjs")
     @RenderSection("scripts", required: false)
 </body>
 </html>

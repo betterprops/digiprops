@@ -54,7 +54,31 @@
     <Compile Include="AspNetUser.cs">
       <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Bill.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillStatu.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExpenseIncomeCategory.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Feature.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Lease.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaseApplication.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaseApplicationStatu.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaseStatu.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaseTerm.cs">
       <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Owner.cs">
@@ -83,6 +107,15 @@
       <DependentUpon>PropertyManagementEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="PropertyStatu.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ResposibleParty.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tenant.cs">
+      <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Transaction.cs">
       <DependentUpon>PropertyManagementEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>

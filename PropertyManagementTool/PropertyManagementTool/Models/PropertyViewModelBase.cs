@@ -37,5 +37,9 @@ namespace PropertyManagementTool.Models
         public ICollection<string> SelectedFeatures { get; set; }
 
         public ICollection<Service.Models.FeatureModel> Features { get; set; }
+
+        public IEnumerable<Service.Models.LeaseTermModel> LeaseTerms { get; set; }
+
+        public int ActiveLeaseId { get; set; }
     }
 }

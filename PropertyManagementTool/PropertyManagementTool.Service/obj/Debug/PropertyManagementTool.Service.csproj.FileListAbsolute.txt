@@ -12,3 +12,31 @@ D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\b
 D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.csprojResolveAssemblyReference.cache
 D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.dll
 D:\GitProjects\digiprops\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.pdb
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.dll.config
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.dll
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.pdb
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\AutoMapper.dll
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.dll
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.DataAccess.dll
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.DataAccess.pdb
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\AutoMapper.xml
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.xml
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.csprojResolveAssemblyReference.cache
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.dll
+C:\Users\carmend\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.pdb
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.dll.config
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.dll
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.Service.pdb
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\AutoMapper.dll
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.dll
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.DataAccess.dll
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\PropertyManagementTool.DataAccess.pdb
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\AutoMapper.xml
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.xml
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.csprojResolveAssemblyReference.cache
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.dll
+C:\Users\Backup CarmenD\Downloads\digiprops-master\digiprops-master\PropertyManagementTool\PropertyManagementTool.Service\obj\Debug\PropertyManagementTool.Service.pdb

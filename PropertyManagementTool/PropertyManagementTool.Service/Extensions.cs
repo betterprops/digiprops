@@ -66,5 +66,78 @@ namespace PropertyManagementTool.Service
             foreach (var prop in features)
                 yield return prop.ToServiceModel();
         }
+
+        public static LeaseTermModelExtended ToServiceModelExtended(this LeaseTerm leaseTerm)
+        {
+            return Mapper.Map<LeaseTerm, LeaseTermModelExtended>(leaseTerm);
+        }
+
+        public static LeaseTermModel ToServiceModel(this LeaseTerm term)
+        {
+            return Mapper.Map<LeaseTerm, LeaseTermModel>(term);
+        }
+
+        public static IEnumerable<LeaseTermModel> ToServiceModels(this IEnumerable<LeaseTerm> terms)
+        {
+            foreach (var term in terms)
+                yield return term.ToServiceModel();
+        }
+
+        public static LeaseApplicationModel ToServiceModel(this LeaseApplication app)
+        {
+            return Mapper.Map<LeaseApplication, LeaseApplicationModel>(app);
+        }
+
+        public static LeaseModel ToServiceModel(this Lease lease)
+        {
+            return Mapper.Map<Lease, LeaseModel>(lease);
+        }
+
+        public static IEnumerable<LeaseModel> ToServiceModel(this IEnumerable<Lease> leases)
+        {
+            foreach (var lease in leases)
+            {
+                yield return lease.ToServiceModel();
+            }
+        }
+
+        public static LeaseStatus ToServiceModel(this LeaseStatu model)
+        {
+            return Mapper.Map<LeaseStatu, LeaseStatus>(model);
+        }
+
+        public static IEnumerable<LeaseStatus> ToServiceModels(this IEnumerable<LeaseStatu> models)
+        {
+            foreach (var m in models)
+            {
+                yield return m.ToServiceModel();
+            }
+        }
+
+        public static TransactionModel ToServiceModel(this Transaction transaction)
+        {
+            return Mapper.Map<Transaction, TransactionModel>(transaction);
+        }
+
+        public static IEnumerable<TransactionModel> ToServiceModel(this IEnumerable<Transaction> transactions)
+        {
+            foreach (var t in transactions)
+            {
+                yield return t.ToServiceModel();
+            }
+        }
+
+        public static BillModel ToServiceModel(this Bill bill)
+        {
+            return Mapper.Map<Bill, BillModel>(bill);
+        }
+
+        public static IEnumerable<BillModel> ToServiceModel(this IEnumerable<Bill> bills)
+        {
+            foreach (var t in bills)
+            {
+                yield return t.ToServiceModel();
+            }
+        }
     }
 }

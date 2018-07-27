@@ -3,9 +3,9 @@
 @{
     ViewBag.Title = "Manage your external logins";
 }
-
-<h2>@ViewBag.Title.</h2>
-
+<br/>
+<h5>@ViewBag.Title.</h5>
+<hr/>
 <p class="text-success">@ViewBag.StatusMessage</p>
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
@@ -21,7 +21,7 @@
     {
         if (Model.CurrentLogins.Count > 0)
         {
-            <h4>Registered Logins</h4>
+            <p class="lead">Registered Logins</p>
             <table class="table">
                 <tbody>
                     @foreach (var account in Model.CurrentLogins)

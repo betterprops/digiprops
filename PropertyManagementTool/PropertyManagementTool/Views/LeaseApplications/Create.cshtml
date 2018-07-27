@@ -1,0 +1,54 @@
+﻿@model PropertyManagementTool.Models.LeaseApplicationCreateViewModel
+@{
+    ViewBag.Title = "New Application";
+}
+
+<br/>
+<h5>@ViewBag.Title</h5>
+<hr/>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.PropertyAddress, new { @class = "control-label" })
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(m => m.PropertyAddress, new { @class = "form-control", @readonly="true" })
+            @Html.HiddenFor(m => m.PropertyAddress)
+            @Html.HiddenFor(m => m.PropertyId)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.LeaseTerms, new { @class = "control-label" })
+        </div>
+        <div class="col-md-6">
+            @Html.DisplayFor(m => m.LeaseTerms, new { @class = "form-control", @readonly = "true" })
+            @Html.HiddenFor(m => m.LeaseTerms)
+            @Html.HiddenFor(m => m.LeaseTermsId)
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.TenantFullName, new { @class = "control-label" })
+        </div>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.TenantFullName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TenantFullName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-2">
+            @Html.LabelFor(m => m.TenantDateOfBirth, new { @class = "control-label" })
+        </div>
+        <div class="col-md-6">
+            @Html.TextBoxFor(m => m.TenantDateOfBirth, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.TenantDateOfBirth, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Save" />
+}
